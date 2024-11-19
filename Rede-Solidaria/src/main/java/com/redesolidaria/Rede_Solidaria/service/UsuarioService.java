@@ -1,0 +1,59 @@
+package com.redesolidaria.Rede_Solidaria.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.redesolidaria.Rede_Solidaria.domain.Usuario;
+import com.redesolidaria.Rede_Solidaria.dto.UsuarioDTO;
+import com.redesolidaria.Rede_Solidaria.dto.UsuarioInserirDTO;
+import com.redesolidaria.Rede_Solidaria.exception.EmailException;
+import com.redesolidaria.Rede_Solidaria.exception.SenhaException;
+import com.redesolidaria.Rede_Solidaria.repository.UsuarioRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class UsuarioService {
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	//@Autowired
+	//private BCryptPasswordEncoder encoder;
+
+	public List<UsuarioDTO> findAll() {
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		List<UsuarioDTO> usuariosDTO = usuarios.stream().map(UsuarioDTO::new).toList();
+		return usuariosDTO;
+	}
+
+	public Optional<Usuario> buscar(Long id) {
+		return usuarioRepository.findById(id);
+	}
+
+	@Transactional
+	public UsuarioDTO inserir(UsuarioInserirDTO usuarioInserirDTO) throws EmailException, SenhaException {
+		if (!usuarioInserirDTO.getSenha().equals(usuarioInserirDTO.getConfirmaSenha())) {
+			throw new SenhaException("Senha e Confirma Senha não são iguais");
+		}
+
+		if (usuarioRepository.findByEmail(usuarioInserirDTO.getEmail()) != null) {
+			throw new EmailException("Email já existente");
+		}
+
+		Usuario usuario = new Usuario();
+		usuario.setNome(usuarioInserirDTO.getNome());
+		usuario.setEmail(usuarioInserirDTO.getEmail());
+		usuario.setSenha((usuarioInserirDTO.getSenha()));
+
+		usuario = usuarioRepository.save(usuario);
+
+		UsuarioDTO usuarioDTO = new UsuarioDTO(usuario);
+		return usuarioDTO;
+	}
+
+}
