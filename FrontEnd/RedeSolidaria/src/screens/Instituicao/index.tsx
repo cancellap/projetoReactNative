@@ -11,7 +11,7 @@ interface ApiResponse {
 }
 
 interface BuscaProps {
-  idInstituicao: string; // Prop que define o ID da instituição a ser buscada
+  idInstituicao: string; 
 }
 
 export const Busca = ({ idInstituicao }: BuscaProps) => {
@@ -26,12 +26,11 @@ export const Busca = ({ idInstituicao }: BuscaProps) => {
 
   const url = "https://673bea0496b8dcd5f3f7de4f.mockapi.io/projetoReactNative/Instituicao";
 
-  // Função para buscar instituição por ID
   const getDataById = async (id: string) => {
     try {
       setLoading(true);
       const result = await axios.get(`${url}/${id}`);
-      setResponse([result.data]); // Coloca o item em um array para usar no FlatList
+      setResponse([result.data]); 
     } catch (error) {
       console.log("Erro ao buscar dados", error);
     } finally {

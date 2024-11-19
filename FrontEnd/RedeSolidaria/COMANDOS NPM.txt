@@ -1,0 +1,5 @@
+npm start - inicia o projeto 
+
+npm install axios
+
+npm install --save react-native-vector-icons
