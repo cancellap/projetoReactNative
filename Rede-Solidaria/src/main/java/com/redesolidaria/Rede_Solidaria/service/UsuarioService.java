@@ -3,6 +3,9 @@ package com.redesolidaria.Rede_Solidaria.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.redesolidaria.Rede_Solidaria.enums.EnumRole;
+import com.redesolidaria.Rede_Solidaria.security.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,41 +22,55 @@ import jakarta.transaction.Transactional;
 @Service
 public class UsuarioService {
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-	//@Autowired
-	//private BCryptPasswordEncoder encoder;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
-	public List<UsuarioDTO> findAll() {
-		List<Usuario> usuarios = usuarioRepository.findAll();
-		List<UsuarioDTO> usuariosDTO = usuarios.stream().map(UsuarioDTO::new).toList();
-		return usuariosDTO;
-	}
+    @Autowired
+    private JwtUtil jwtUtil;
 
-	public Optional<Usuario> buscar(Long id) {
-		return usuarioRepository.findById(id);
-	}
+    @Autowired
+    private HttpServletRequest request;
 
-	@Transactional
-	public UsuarioDTO inserir(UsuarioInserirDTO usuarioInserirDTO) throws EmailException, SenhaException {
-		if (!usuarioInserirDTO.getSenha().equals(usuarioInserirDTO.getConfirmaSenha())) {
-			throw new SenhaException("Senha e Confirma Senha não são iguais");
-		}
+    public List<UsuarioDTO> findAll() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<UsuarioDTO> usuariosDTO = usuarios.stream().map(UsuarioDTO::new).toList();
+        return usuariosDTO;
+    }
 
-		if (usuarioRepository.findByEmail(usuarioInserirDTO.getEmail()) != null) {
-			throw new EmailException("Email já existente");
-		}
+    public Optional<Usuario> buscar(Long id) {
+        return usuarioRepository.findById(id);
+    }
 
-		Usuario usuario = new Usuario();
-		usuario.setNome(usuarioInserirDTO.getNome());
-		usuario.setEmail(usuarioInserirDTO.getEmail());
-		usuario.setSenha((usuarioInserirDTO.getSenha()));
+    @Transactional
+    public UsuarioDTO inserir(UsuarioInserirDTO usuarioInserirDTO) throws EmailException, SenhaException {
+        if (!usuarioInserirDTO.getSenha().equals(usuarioInserirDTO.getConfirmaSenha())) {
+            throw new SenhaException("Senha e Confirma Senha não são iguais");
+        }
 
-		usuario = usuarioRepository.save(usuario);
+        if (usuarioRepository.findByEmail(usuarioInserirDTO.getEmail()).isPresent()) {
+            throw new EmailException("Email já existente");
+        }
 
-		UsuarioDTO usuarioDTO = new UsuarioDTO(usuario);
-		return usuarioDTO;
-	}
+        Usuario usuario = new Usuario();
+        usuario.setNome(usuarioInserirDTO.getNome());
+        usuario.setEmail(usuarioInserirDTO.getEmail());
+        usuario.setSenha(encoder.encode(usuarioInserirDTO.getSenha()));
+        usuario.setRole(EnumRole.VISITANTE);
+
+        usuario = usuarioRepository.save(usuario);
+
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario);
+        return usuarioDTO;
+    }
+
+    public Optional<Usuario> requestUserByToken() {
+        String token = request.getHeader("Authorization");
+        token = token.substring(7);
+        String email = jwtUtil.getUserName(token);
+        return usuarioRepository.findByEmail(email);
+    }
 
 }
