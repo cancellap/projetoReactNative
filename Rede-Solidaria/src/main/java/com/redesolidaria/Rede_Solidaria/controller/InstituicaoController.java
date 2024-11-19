@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.redesolidaria.Rede_Solidaria.domain.Instituicao;
+import com.redesolidaria.Rede_Solidaria.dto.InstituicaoDTO;
 import com.redesolidaria.Rede_Solidaria.dto.InstituicaoInserirDTO;
 import com.redesolidaria.Rede_Solidaria.repository.InstituicaoRepository;
 import com.redesolidaria.Rede_Solidaria.service.InstituicaoService;
@@ -14,7 +15,7 @@ import com.redesolidaria.Rede_Solidaria.service.InstituicaoService;
 @RestController
 @RequestMapping("/instituicao")
 public class InstituicaoController {
-	
+
 	@Autowired
 	private InstituicaoRepository instituicaoRepository;
 
@@ -26,11 +27,16 @@ public class InstituicaoController {
 		return ResponseEntity.ok(instituicaoService.findAll());
 	}
 
+	@GetMapping("/{busca}")
+	public List<InstituicaoDTO> getInstituicoesPorNome(@PathVariable String busca) {
+		return instituicaoService.buscaPorNome(busca);
+	}
+
 	@PostMapping
 	public ResponseEntity<Instituicao> cadastrar(@RequestBody InstituicaoInserirDTO instituicao) {
 		return ResponseEntity.ok(instituicaoService.inserir(instituicao));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		if (instituicaoRepository.existsById(id)) {
@@ -38,6 +44,6 @@ public class InstituicaoController {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.notFound().build();
-    }
-	
+	}
+
 }
