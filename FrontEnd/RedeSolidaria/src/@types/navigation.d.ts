@@ -1,17 +1,20 @@
 export type PropsStack = {
-  StackLogin: { name: string };
-  StackHome: { name: string };
-}
+
+  StackLogin: undefined;
+  StackHome: undefined;
+};
 
 export type PropsTabs = {
-  TabsHome: undefined,
-  TabsProfile: undefined,
-  TabsSettings: undefined,
-}
+  TabsHome: undefined;
+  TabSearch: undefined;
+};
+
 
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends PropsStack {}
     interface RootParamList extends PropsTabs {}
   }
+
 }
+
