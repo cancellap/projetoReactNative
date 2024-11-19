@@ -11,7 +11,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private String jwtSecret = System.getenv("JWT_SECRET");
+    private String jwtSecret = "wOXx9za7W4cPn1J3Cu7ORa2nuw5Wm5bM";
 
     private Long jwtExpirationMiliseg = 90000000L;
 
