@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, View } from "react-native";
+import { FlatList, SafeAreaView, View, Text } from "react-native";
 import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
-
+import { styles } from "./style"; 
 interface ApiResponse {
   id: string;
-  nome: string;
-  tipo: string;
+  razaoSocial: string;
+  endereco: string;
+  cnpj: string;
+  email: string;
 }
 
 interface BuscaProps {
-  idInstituicao: string; 
+  idInstituicao: string;
 }
 
 export const Busca = ({ idInstituicao }: BuscaProps) => {
@@ -24,27 +26,39 @@ export const Busca = ({ idInstituicao }: BuscaProps) => {
     }
   }, [idInstituicao]);
 
-  const url = "https://673bea0496b8dcd5f3f7de4f.mockapi.io/projetoReactNative/Instituicao";
+  const url = `http://192.168.3.1:8080/instituicao/${idInstituicao}`;
 
   const getDataById = async (id: string) => {
     try {
       setLoading(true);
-      const result = await axios.get(`${url}/${id}`);
+      const result = await axios.get(url);
       setResponse([result.data]); 
     } catch (error) {
-      console.log("Erro ao buscar dados", error);
+      console.log("Erro ao buscar dados");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-      <SearchBar />
-      <FlatList
+    <SafeAreaView style={styles.container}>
+      <View style={styles.searchBarContainer}>
+        <SearchBar />
+      </View>
+    <FlatList
           data={response}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <Card nome={item.nome} tipo={item.tipo} />}
+          renderItem={({ item }) => (
+            <View style={styles.cardContainer}>
+              <Card
+                razaoSocial={item.razaoSocial}
+                endereco={item.endereco}
+                cnpj={item.cnpj}
+                email={item.email}
+              />
+            </View>
+          )}
         />
-      )}
+    </SafeAreaView>
   );
 };

@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,// Cor de fundo suave
+    flex: 1,
+    backgroundColor: '#f5f5f5',
     padding: 16,
   },
   loadingContainer: {
@@ -19,12 +20,12 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2, 
+    elevation: 2,
   },
   cardText: {
     fontSize: 16,
     color: '#333',
-  },
+    marginBottom: 4,   },
   searchBarContainer: {
     marginBottom: 16,
   },
