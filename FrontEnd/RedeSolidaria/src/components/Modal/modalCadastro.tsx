@@ -1,44 +1,49 @@
-import { View, Text, Image, TextInput, Button, TouchableOpacity, Modal } from 'react-native'
+import { View, Text, Image, Modal } from 'react-native'
 import React, { useState } from 'react'
-import { style } from './style'
+import { TextInputField } from '../TextInput'
 import logo from '../../assets/logo.png'
-import { ButtonTypes } from '../../components/ButtonTypes'
-import { TextInputField } from '../../components/TextInput'
+import { ButtonTypes } from '../ButtonTypes'
+import { style } from './style'
 
-export const Cadastro = () => {
+export const modalCadastro = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] =  useState('');
+    const [cnpj, setCnpj] = useState('');
+    const [endereco, setEndereco] =  useState('');
+    const [openModal, setOpenModal] = useState(false);
 
     function handleSignUp(){
-       const data= {
-        username,
-        email,
-        password,
-        confirmPassword
+        const data= {
+         username,
+         email,
+         cnpj,
+         endereco
+        }
+        console.log(data);
+               
+     }
+     const handleUsername = (value: string) => {
+         setUsername(value);
        }
-       console.log(data);
-              
-    }
-    const handleUsername = (value: string) => {
-        setUsername(value);
-      }
-    
-      const handleEmail = (value: string) => {
-        setEmail(value);
-      }
-      const handlePassword = (value: string) => {
-        setPassword(value);
-      }
-    
-      const handleConfirmPassword = (value: string) => {
-        setConfirmPassword(value);
-      }
+     
+       const handleEmail = (value: string) => {
+         setEmail(value);
+       }
+       const handleCnpj = (value: string) => {
+         setCnpj(value);
+       }
+     
+       const handleEndereco = (value: string) => {
+         setEndereco(value);
+       }
 
   return (
-    <View style={style.container}>
-        <View style={style.boxTop}>
+    <Modal
+    animationType='fade'
+    visible={openModal}
+    style={style.modal}
+    >
+      <View style={style.container}>
             <Image source={logo} style={style.logo}/>
             <Text style={style.text}>Bem vindo(a) à Rede Solidária</Text>
             <Text style={style.text}>Por favor realize seu cadastro</Text>
@@ -58,14 +63,14 @@ export const Cadastro = () => {
                 />
             <TextInputField
                   placeHolder="Digite sua senha"
-                  valueInput={password}
-                  hadleFunctionInput={handlePassword}
+                  valueInput={cnpj}
+                  hadleFunctionInput={handleCnpj}
                   typeIcon="password"
                 />
             <TextInputField
                   placeHolder="Confirme sua senha"
-                  valueInput={confirmPassword}
-                  hadleFunctionInput={handleConfirmPassword}
+                  valueInput={endereco}
+                  hadleFunctionInput={handleEndereco}
                   typeIcon="password"
                 />
         </View>
@@ -76,6 +81,6 @@ export const Cadastro = () => {
                 propsBackgroundColor="#176B87"
             />
         </View>
-    </View>
+    </Modal>
   )
 }

@@ -6,6 +6,8 @@ type PropsContext = {
   setEmail: (value: string) => void;
   checkAuthentication: (email: string) => void;
   isLoading: boolean;
+  token: string;
+  setToken: (value: string) => void;
 };
 
 const AuthContext = createContext<PropsContext>({
@@ -13,21 +15,27 @@ const AuthContext = createContext<PropsContext>({
   setEmail: () => {},
   checkAuthentication: () => {},
   isLoading: false,
+  token: "",
+  setToken: () => {},
 });
 
 export const AuthProvider = ({ children }: any) => {
   const navigation = useNavigation();
+  const [token, setToken] = useState<string>("");
 
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const checkAuthentication = (email: string) => {
     setIsLoading(true);
+    //processo de autenticacao
     navigation.navigate("StackHome");
     setIsLoading(false);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //carregar informacoes do async storage, verificar se o token é valido
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -36,6 +44,8 @@ export const AuthProvider = ({ children }: any) => {
         setEmail,
         checkAuthentication,
         isLoading,
+        token,
+        setToken,
       }}
     >
       {children}
