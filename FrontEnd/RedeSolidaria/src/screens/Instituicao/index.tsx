@@ -16,7 +16,7 @@ interface BuscaProps {
   idInstituicao: string;
 }
 
-export const Busca = ({ idInstituicao }: BuscaProps) => {
+export const Instituicao = ({ idInstituicao }: BuscaProps) => {
   const [response, setResponse] = useState<ApiResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
