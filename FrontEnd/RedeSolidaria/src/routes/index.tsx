@@ -3,11 +3,14 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import StackRouters from "./StackRouters";
 import TabRouters from "./TabRouters";
+import { AuthProvider } from "../hook/useAuth";
 
 export const Routers = () => {
   return (
     <NavigationContainer>
-      <TabRouters />
+      <AuthProvider>
+        <StackRouters />
+      </AuthProvider>
     </NavigationContainer>
   );
 };
