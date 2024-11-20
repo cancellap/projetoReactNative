@@ -32,15 +32,10 @@ export const Home = () => {
           ))}
         </View>
       </View>
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Home</Text>
     </View>
   );
 };
 
-const GridButton = ({ title, nomeIcone }: { title: string; nomeIcone: string }) => {
-  return (
-    <View style={styles.grid}>
-      <Icon name={nomeIcone} type="font-awesome" size={25} color="#333" />
-      <Text style={styles.itemText}>{title}</Text>
-    </View>
-  );
-};

@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { TextInput, TouchableOpacity } from "react-native"
+import {styles} from './style';
+import { View } from "react-native";
 import Icon from '@expo/vector-icons/Feather';
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { styles } from './style';
+import { useState } from "react";
 
 interface PropsInput {
-  placeHolder: string;
+  placeHolder?: string;
   typeInput?: boolean;
-  valueInput: string;
-  hadleFunctionInput: (value: string) => void;
+  valueInput?: string;
+  hadleFunctionInput?: (value: string) => void;
   typeIcon?: string;
 }
 
@@ -19,7 +20,7 @@ export const TextInputField = ({
   typeIcon
 }: PropsInput) => {
 
-  const [viewPassword, setViewPassword] = useState<boolean>(true);
+  const [viewPassword, setViewPassword] = useState<boolean>(false);
 
   return (
     <View style={styles.boxInput}>
@@ -28,16 +29,13 @@ export const TextInputField = ({
         style={styles.input}
         placeholder={placeHolder}
         placeholderTextColor="#000"
-        secureTextEntry={typeIcon === 'password' ? viewPassword : typeInput}
+        secureTextEntry={typeIcon === 'password' && !viewPassword}
         value={valueInput}
       />
 
       <View style={styles.boxIcon}>
         {typeIcon === 'person' && 
           <Icon name="user" size={24} color="#000" />
-        }
-        {typeIcon === 'mail' &&
-        <Icon name="mail" size={24} color="#000"/>
         }
 
         {typeIcon === 'password' && 
