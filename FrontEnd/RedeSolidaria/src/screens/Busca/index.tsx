@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, View, Text } from "react-native";
+import React, { useState } from "react";
+import { FlatList, Text, View } from "react-native";
+
 import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
