@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, View, Text } from "react-native";
+import React, { useState } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
+
 import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
+import { useNavigation } from "@react-navigation/native";
 
 interface ApiResponse {
   id: string;
@@ -29,6 +31,15 @@ export const Busca = () => {
     getData(text);
   };
 
+  const navigate = useNavigation();
+
+  const goToInstituicao = (id: number) => {
+    navigate.navigate("StackInstituicao", {
+      id: id,
+      nome: "StackInstituicao",
+    });
+  };
+
   return (
     <View>
       <SearchBar onSearch={handleSearch} value={value} />
@@ -37,7 +48,11 @@ export const Busca = () => {
           data={response}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Card nome={item.razaoSocial} tipo={item.tipo} />
+            <TouchableOpacity
+              onPress={() => goToInstituicao(parseInt(item.id))}
+            >
+              <Card razaoSocial={item.razaoSocial} tipo={item.tipo} />
+            </TouchableOpacity>
           )}
         />
       ) : (
