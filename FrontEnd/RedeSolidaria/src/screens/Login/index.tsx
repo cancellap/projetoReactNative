@@ -12,6 +12,7 @@ import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
 import Logo from "../../../assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -20,8 +21,18 @@ export const Login = () => {
 
   const handleLogin = () => {
     Alert.alert("Botão para realizar login");
+    axios
+      .post("http://192.168.1.2:8080/login", {
+        email: email,
+        senha: password,
+      })
+      .then((response) => {
+        console.log("Funcionou!");
+        const auth = response.headers["authorization"];
+        console.log(auth);
+      });
     console.log("Pegando informações", email, password);
-    navigation.navigate("StackHome");
+    // navigation.navigate("StackHome");
   };
 
   const handlePassword = (value: string) => {

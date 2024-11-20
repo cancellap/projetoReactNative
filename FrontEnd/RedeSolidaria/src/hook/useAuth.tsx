@@ -1,10 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type PropsContext = {
   email: string;
   setEmail: (value: string) => void;
-  checkAuthentication: (email: string) => void;
+  checkToken: (email: string) => void;
   isLoading: boolean;
   token: string;
   setToken: (value: string) => void;
@@ -13,7 +14,7 @@ type PropsContext = {
 const AuthContext = createContext<PropsContext>({
   email: "",
   setEmail: () => {},
-  checkAuthentication: () => {},
+  checkToken: () => {},
   isLoading: false,
   token: "",
   setToken: () => {},
@@ -26,9 +27,14 @@ export const AuthProvider = ({ children }: any) => {
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const checkAuthentication = (email: string) => {
+  const checkToken = (email: string) => {
     setIsLoading(true);
-    //processo de autenticacao
+    //requisicao para verificar se o token é válido
+    axios.get("http://192.168.1.2:8080/usuarios", {
+      headers: {
+        Authorization: token,
+      },
+    });
     navigation.navigate("StackHome");
     setIsLoading(false);
   };
@@ -42,7 +48,7 @@ export const AuthProvider = ({ children }: any) => {
       value={{
         email,
         setEmail,
-        checkAuthentication,
+        checkToken,
         isLoading,
         token,
         setToken,

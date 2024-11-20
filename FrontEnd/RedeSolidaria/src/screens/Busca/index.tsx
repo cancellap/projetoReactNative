@@ -18,7 +18,7 @@ export const Busca = () => {
 
   const getData = async (value: string) => {
     try {
-      const url = `http://192.168.1.12:8080/instituicao/${value}`;
+      const url = `http://192.168.1.2:8080/instituicao/${value}`;
       const result = await axios.get(url);
       setResponse(result.data);
     } catch (error) {
