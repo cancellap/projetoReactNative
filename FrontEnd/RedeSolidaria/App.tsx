@@ -10,9 +10,9 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar style="dark" />
-      <Busca/>
-      <Instituicao/>
-    </View>
+      {/* <Busca /> */}
+      {/* <Instituicao /> */}
+
       <Routers />
       {/* <Login /> */}
     </React.Fragment>
