@@ -1,13 +1,10 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
-
 import axios from "axios";
-
-
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "./style";
 
 interface ApiResponse {
   id: string;
@@ -17,51 +14,63 @@ interface ApiResponse {
 
 export const Busca = () => {
   const [response, setResponse] = useState<ApiResponse[]>([]);
+  const [filteredResponse, setFilteredResponse] = useState<ApiResponse[]>([]);
   const [value, setValue] = useState("");
 
-  const getData = async (value: string) => {
+  const navigate = useNavigation();
+
+  const getHome = async () => {
     try {
-      const url = `http://192.168.1.12:8080/instituicao/${value}`;
+      const url = `http://192.168.1.12:8080/instituicao`;
       const result = await axios.get(url);
       setResponse(result.data);
+      setFilteredResponse(result.data); // Inicializa a lista filtrada com todos os dados
     } catch (error) {
-      console.log("Erro ao buscar dados");
+      console.log("Erro ao buscar dados:", error);
     }
   };
 
   const handleSearch = (text: string) => {
     setValue(text);
-    getData(text);
+    const filtrado = response.filter((item) =>
+      item.razaoSocial.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredResponse(filtrado);
   };
 
-  const navigate = useNavigation();
-
   const goToInstituicao = (id: number) => {
-    navigate.navigate("StackInstituicao", {
+    navigate.navigate("Instituicao", {
       id: id,
-      nome: "StackInstituicao",
+      nome: "Instituicao",
     });
   };
 
+  useEffect(() => {
+    getHome();
+  }, []);
+
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar onSearch={handleSearch} value={value} />
-      {response.length ? (
+      {filteredResponse.length > 0 ? (
         <FlatList
-          data={response}
+          data={filteredResponse}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => goToInstituicao(parseInt(item.id))}
+              activeOpacity={0.89}
             >
               <Card razaoSocial={item.razaoSocial} tipo={item.tipo} />
             </TouchableOpacity>
           )}
         />
       ) : (
-        <Text style={{ textAlign: "center", marginTop: 20 }}>
-          Nenhuma instituição encontrada
-        </Text>
+        <View>
+          <Text style={{ textAlign: "center", marginTop: 20 }}>
+            Nenhuma instituição encontrada
+          </Text>
+        </View>
       )}
     </View>
   );
