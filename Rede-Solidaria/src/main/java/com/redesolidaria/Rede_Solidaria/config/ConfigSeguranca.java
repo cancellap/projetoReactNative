@@ -35,16 +35,15 @@ public class ConfigSeguranca {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).cors((cors) -> cors.configurationSource(corsConfigurationSource()))
-				.authorizeHttpRequests(authorize -> authorize
-//								.requestMatchers(HttpMethod.POST, "/usuarios/**").permitAll()
-//								.requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
-//								.requestMatchers(HttpMethod.POST, "/login").permitAll()
-								.requestMatchers(HttpMethod.GET, "/instituicao/**").authenticated()
-								.requestMatchers(HttpMethod.POST, "/instituicao").authenticated()
-//								.requestMatchers("/h2-console/**").permitAll()
-								.requestMatchers("/usuarios/user").authenticated()
-                                .anyRequest().permitAll()
-				).headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
+
+				.authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/usuarios/**")
+						.permitAll().requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
+						.requestMatchers(HttpMethod.POST, "/login").permitAll()
+						.requestMatchers(HttpMethod.GET, "/instituicao/**").permitAll()
+						.requestMatchers("/h2-console/**").permitAll()
+
+						.anyRequest().permitAll())
+				.headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(

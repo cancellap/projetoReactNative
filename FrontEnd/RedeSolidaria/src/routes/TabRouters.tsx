@@ -5,6 +5,7 @@ import { Busca } from "../screens/Busca";
 import { styles } from "./style";
 import { FontAwesome, Foundation } from "@expo/vector-icons";
 import { Home } from "../screens/Home";
+
 import { useAuth } from "../hook/useAuth";
 import { Cadastro } from "../screens/Cadastro";
 
@@ -15,8 +16,8 @@ const TabRouters = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        title: "",
         tabBarHideOnKeyboard: true,
+        title: "",
         headerShown: false,
         tabBarStyle: {
           backgroundColor: "#176B87",
@@ -27,7 +28,7 @@ const TabRouters = () => {
       }}
     >
       <Tab.Screen
-        name="TabHome"
+        name="TabsHome"
         component={Home}
         options={{
           tabBarIcon: ({ focused, size }) => (
@@ -45,7 +46,7 @@ const TabRouters = () => {
                   },
                 ]}
               >
-                Profile
+                Home
               </Text>
             </View>
           ),
