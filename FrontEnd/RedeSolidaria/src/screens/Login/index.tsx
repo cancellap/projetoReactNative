@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
+  Button,
 } from "react-native";
 import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
@@ -21,7 +22,7 @@ export const Login = () => {
   const handleLogin = () => {
     Alert.alert("Botão para realizar login");
     console.log("Pegando informações", email, password);
-    navigation.navigate("StackHome");
+    navigation.navigate("Home");
   };
 
   const handlePassword = (value: string) => {
@@ -44,6 +45,7 @@ export const Login = () => {
             valueInput={email}
             hadleFunctionInput={handleEmail}
             typeIcon="person"
+        
           />
 
           <TextInputField
@@ -58,6 +60,15 @@ export const Login = () => {
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.msg}>Ainda não possui uma conta? </Text>
+      
+        <TouchableOpacity
+        style={styles.ButtonCadastro}
+        onPress={() => navigation.navigate('Cadastro')}
+      >
+        <Text style={styles.TextCadastro}>Cadastre-se</Text>
+      </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
   );

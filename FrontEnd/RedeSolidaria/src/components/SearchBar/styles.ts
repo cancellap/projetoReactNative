@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   safeArea: {
     flex: 0,
     backgroundColor: "#176B87",
+    borderRadius: 20,
 
   },
   container: {
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#EEF5FF",
-    borderRadius: 10,
+    borderRadius: 20,
     paddingHorizontal: 10,
     height: 40,
     marginLeft: 15,
