@@ -41,7 +41,7 @@ public class ConfigSeguranca {
 						.requestMatchers(HttpMethod.GET, "/instituicao/**").permitAll()
 						.requestMatchers(HttpMethod.POST,  "instituicao").permitAll()
 						.requestMatchers("/h2-console/**").permitAll()
-//                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
 				).headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
