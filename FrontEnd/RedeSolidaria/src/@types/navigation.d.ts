@@ -1,5 +1,5 @@
 export type PropsStack = {
-
+  StackInstituicao:{nome: string, id: number}
   StackLogin: undefined;
   StackHome: undefined;
 };
