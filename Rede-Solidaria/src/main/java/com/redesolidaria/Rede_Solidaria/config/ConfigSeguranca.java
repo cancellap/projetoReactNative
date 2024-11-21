@@ -39,6 +39,7 @@ public class ConfigSeguranca {
 						.permitAll().requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
 						.requestMatchers(HttpMethod.POST, "/login").permitAll()
 						.requestMatchers(HttpMethod.GET, "/instituicao/**").permitAll()
+						.requestMatchers(HttpMethod.POST,  "instituicao").permitAll()
 						.requestMatchers("/h2-console/**").permitAll()
 //                                .anyRequest().authenticated()
 				).headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
