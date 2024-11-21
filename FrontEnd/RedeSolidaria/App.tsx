@@ -6,8 +6,8 @@ import { Home } from "./src/screens/Home/index";
 export default function App() {
   return (
     <View>
-      <StatusBar style="dark" />
-      <Busca/>
+      {/* <StatusBar style="dark" />
+      <Busca/> */}
       <Home />
 
     </View>
