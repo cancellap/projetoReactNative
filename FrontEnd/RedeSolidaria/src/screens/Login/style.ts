@@ -37,6 +37,17 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
       }, 
 
+
+
+      msg: {
+          alignSelf: 'center',
+          justifyContent: 'center',
+          marginTop: 40,
+          color: '#d34742',
+          fontSize: 18,
+  
+      },
+
       logo: {
         marginTop: 10,
         alignContent: 'flex-start',
@@ -50,6 +61,23 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#176B87',
         marginBottom: 50,
+      },
+
+      ButtonCadastro: {
+        marginTop: 10,
+        justifyContent: 'center',
+        width: '30%',
+        padding: 2,
+        backgroundColor: '#176B87',
+        borderRadius: 10,
+      },
+
+      TextCadastro: {
+        alignSelf: 'center',
+        fontSize: 15,
+        fontWeight: 'bold',
+        margin: 10,
+        color: '#fff',
       }
 
 });
