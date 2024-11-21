@@ -6,6 +6,7 @@ export const style = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor: '#EEF5FF'
+
     },
     logo:{
         width: 300,
@@ -25,7 +26,7 @@ export const style = StyleSheet.create({
     },
     boxBottom:{
         flexDirection:'row',
-        height:100,
+        height:50,
         width:'100%',
         alignItems:'center',
         justifyContent:'space-evenly',
