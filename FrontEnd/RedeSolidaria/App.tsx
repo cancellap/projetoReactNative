@@ -13,16 +13,11 @@ import { Cadastro } from "./src/screens/Cadastro";
 
 export default function App() {
   return (
+
     <React.Fragment>
       <StatusBar style="dark" />
-      
-      {/* <Busca /> */}
-      {/* <Instituicao /> */}
-     {/*   <Cadastro/> */}
-      <Routers /> 
-    
+      <Routers />
     </React.Fragment>
-
   );
 }
     
