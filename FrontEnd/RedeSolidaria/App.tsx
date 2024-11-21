@@ -15,14 +15,3 @@ export default function App() {
     </React.Fragment>
   );
 }
-// </View>
-{
-  /* <Busca /> */
-}
-{
-  /* <Instituicao /> */
-}
-// <Routers />
-{
-  /* <Login /> */
-}

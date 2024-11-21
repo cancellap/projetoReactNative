@@ -30,11 +30,11 @@ export const Login = () => {
       })
       .then(async (response) => {
         console.log("Funcionou!");
-        const authToken = response.headers["authorization"]; // Obtenha o token diretamente da resposta
+        const authToken = response.headers["authorization"];
         console.log("Token recebido:", authToken);
 
-        setToken(authToken); // Atualiza o estado do token
-        await saveData(authToken); // Salva o token diretamente no AsyncStorage
+        setToken(authToken);
+        await saveData(authToken);
 
         navigation.navigate("StackHome");
       })
