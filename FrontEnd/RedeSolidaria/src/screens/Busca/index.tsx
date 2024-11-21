@@ -24,7 +24,7 @@ export const Busca = () => {
       const url = `http://192.168.1.12:8080/instituicao`;
       const result = await axios.get(url);
       setResponse(result.data);
-      setFilteredResponse(result.data); // Inicializa a lista filtrada com todos os dados
+      setFilteredResponse(result.data);
     } catch (error) {
       console.log("Erro ao buscar dados:", error);
     }
