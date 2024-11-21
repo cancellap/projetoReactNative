@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Busca } from "../screens/Busca";
@@ -12,18 +12,19 @@ const TabRouters = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         title: "",
         headerShown: false,
         tabBarStyle: {
           backgroundColor: "#176B87",
-          height: 90,
+          height: Platform.OS == "ios" ? 90 : 60,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
         },
       }}
     >
       <Tab.Screen
-        name="TabHome"
+        name="TabsHome"
         component={Home}
         options={{
           tabBarIcon: ({ focused, size }) => (
@@ -41,7 +42,7 @@ const TabRouters = () => {
                   },
                 ]}
               >
-                Profile
+                Home
               </Text>
             </View>
           ),
@@ -62,7 +63,7 @@ const TabRouters = () => {
                 style={[
                   styles.textTabRoute,
                   {
-                    color: focused ? "#d34742" : "#B4D4FF",
+                    color: focused ? "#EEF5FF" : "#B4D4FF",
                   },
                 ]}
               >

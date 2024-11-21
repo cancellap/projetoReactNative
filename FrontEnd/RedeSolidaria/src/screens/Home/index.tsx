@@ -25,5 +25,6 @@ export const Home: React.FC = () => {
         </TouchableOpacity>
       </View>
     </View>
+
   );
 };

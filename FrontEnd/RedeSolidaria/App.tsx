@@ -13,6 +13,7 @@ export default function App() {
       <StatusBar style="dark" />
       <Routers />
     </React.Fragment>
+
   );
 }
     
