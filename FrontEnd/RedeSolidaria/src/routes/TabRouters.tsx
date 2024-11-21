@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Busca } from "../screens/Busca";
 import { styles } from "./style";
 import { FontAwesome, Foundation } from "@expo/vector-icons";
-import Home from "../screens/Home";
+import { Home } from "../screens/Home";
 
 const Tab = createBottomTabNavigator();
 
