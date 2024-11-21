@@ -16,7 +16,7 @@ interface ApiResponse {
 }
 
 // type BuscaProps = NativeStackScreenProps<PropsStack, "StackInstituicao">;
-type InstituicaoProps = NativeStackScreenProps<PropsStack, "StackInstituicao">;
+type InstituicaoProps = NativeStackScreenProps<PropsStack, "Instituicao">;
 
 // export const Instituicao = ({ route }: any) => {
   export const Instituicao: React.FC<InstituicaoProps> = ({ route }) => {
