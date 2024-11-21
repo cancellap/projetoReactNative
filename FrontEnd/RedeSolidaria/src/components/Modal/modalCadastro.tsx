@@ -10,6 +10,7 @@ export const modalCadastro = () => {
     const [email, setEmail] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [endereco, setEndereco] =  useState('');
+    
     const [openModal, setOpenModal] = useState(false);
 
     function handleSignUp(){

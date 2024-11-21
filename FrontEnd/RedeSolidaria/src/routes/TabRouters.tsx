@@ -92,7 +92,7 @@ const TabRouters = () => {
                 style={[
                   styles.textTabRoute,
                   {
-                    color: focused ? "#EEF5FF" : "#B4D4FF",
+                    color: focused ? "#d34742" : "#B4D4FF",
                   },
                 ]}
               >

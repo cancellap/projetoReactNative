@@ -1,7 +1,10 @@
+
 import React, { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 import axios from "axios";
+
+
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";

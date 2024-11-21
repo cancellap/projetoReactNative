@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
+  Button,
 } from "react-native";
 import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
@@ -23,6 +24,7 @@ export const Login = () => {
 
   const handleLogin = () => {
     Alert.alert("Botão para realizar login");
+
     axios
       .post("http://192.168.1.2:8080/login", {
         email: email,
@@ -77,6 +79,15 @@ export const Login = () => {
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.msg}>Ainda não possui uma conta? </Text>
+
+        <TouchableOpacity
+          style={styles.ButtonCadastro}
+          onPress={() => navigation.navigate("TabCadastro")}
+        >
+          <Text style={styles.TextCadastro}>Cadastre-se</Text>
+        </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
   );
