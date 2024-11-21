@@ -15,6 +15,6 @@ export const Home: React.FC = () => {
       <Button title="Clique aqui" onPress={handlePress} />
 
     </View>
-   
+
   );
 };
