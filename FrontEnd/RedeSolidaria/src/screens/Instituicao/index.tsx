@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, View, Text } from "react-native";
 import axios from "axios";
-import { Card } from "../../components/Card";
+import { CardInstituicao } from "../../components/CardInstituicao";
 import { SearchBar } from "../../components/SearchBar";
 import { styles } from "./style";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -65,10 +65,27 @@ export const Instituicao = ({ route }: any) => {
     //     )}
     //   />
     // </SafeAreaView>
+    
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ color: "pink", fontSize: 30 }}>
-        {response? response.razaoSocial : "nao veio"}
-      </Text>
-    </View>
-  );
+    {response ? (
+      <CardInstituicao
+        razaoSocial={response.razaoSocial}
+        endereco={response.endereco}
+        cnpj={response.cnpj}
+        email={response.email}
+      />
+    ) : (
+      <Text style={{ color: "pink", fontSize: 30 }}>nao veio</Text>
+    )}
+  </View>
+);
 };
+
+
+//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+//       <Text style={{ color: "pink", fontSize: 30 }}>
+//         {response? response.razaoSocial : "nao veio"}
+//       </Text>
+//     </View>
+//   );
+// };
