@@ -37,11 +37,10 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
       }, 
 
-
-
       msg: {
           alignSelf: 'center',
           justifyContent: 'center',
+          fontStyle: 'italic',
           marginTop: 40,
           color: '#d34742',
           fontSize: 18,
@@ -75,7 +74,6 @@ export const styles = StyleSheet.create({
       TextCadastro: {
         alignSelf: 'center',
         fontSize: 15,
-        fontWeight: 'bold',
         margin: 10,
         color: '#fff',
       }
