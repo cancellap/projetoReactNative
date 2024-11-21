@@ -3,8 +3,8 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type PropsContext = {
-  email: string;
-  setEmail: (value: string) => void;
+  role: string;
+  setRole: (value: string) => void;
   checkToken: (email: string) => void;
   isLoading: boolean;
   token: string;
@@ -12,8 +12,8 @@ type PropsContext = {
 };
 
 const AuthContext = createContext<PropsContext>({
-  email: "",
-  setEmail: () => {},
+  role: "",
+  setRole: () => {},
   checkToken: () => {},
   isLoading: false,
   token: "",
@@ -24,13 +24,13 @@ export const AuthProvider = ({ children }: any) => {
   const navigation = useNavigation();
   const [token, setToken] = useState<string>("");
 
-  const [email, setEmail] = useState<string>("");
+  const [role, setRole] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const checkToken = (email: string) => {
     setIsLoading(true);
     //requisicao para verificar se o token é válido
-    axios.get("http://192.168.1.2:8080/usuarios", {
+    axios.get("http://192.168.1.2:8080/usuarios/user", {
       headers: {
         Authorization: token,
       },
@@ -46,8 +46,8 @@ export const AuthProvider = ({ children }: any) => {
   return (
     <AuthContext.Provider
       value={{
-        email,
-        setEmail,
+        role,
+        setRole,
         checkToken,
         isLoading,
         token,

@@ -73,4 +73,7 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
+    public UsuarioDTO getUser() {
+        return new UsuarioDTO(requestUserByToken().get());
+    }
 }

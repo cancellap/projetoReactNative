@@ -13,8 +13,10 @@ import { styles } from "./style";
 import Logo from "../../../assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { useAuth } from "../../hook/useAuth";
 
 export const Login = () => {
+  const { token, setToken } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
@@ -28,10 +30,13 @@ export const Login = () => {
       })
       .then((response) => {
         console.log("Funcionou!");
-        const auth = response.headers["authorization"];
-        console.log(auth);
+        setToken(response.headers["authorization"]);
+        console.log(token);
+      })
+      .catch(() => {
+        console.log("Erro ao fazer login");
       });
-    console.log("Pegando informações", email, password);
+    // console.log("Pegando informações", email, password);
     // navigation.navigate("StackHome");
   };
 
