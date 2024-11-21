@@ -37,9 +37,9 @@ export const Busca = () => {
   const navigate = useNavigation();
 
   const goToInstituicao = (id: number) => {
-    navigate.navigate("StackInstituicao", {
+    navigate.navigate("Instituicao", {
       id: id,
-      nome: "StackInstituicao",
+      nome: "Instituicao",
     });
   };
 
