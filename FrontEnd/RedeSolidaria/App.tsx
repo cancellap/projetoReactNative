@@ -8,6 +8,7 @@ import { Instituicao } from "./src/screens/Instituicao";
 import { Routers } from "./src/routes";
 
 
+
 export default function App() {
   return (
     <React.Fragment>
@@ -15,6 +16,7 @@ export default function App() {
       <Busca/>
       <Home />
       </React.Fragment>
+
   );
 }
     // </View>
