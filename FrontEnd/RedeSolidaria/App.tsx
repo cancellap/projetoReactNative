@@ -14,11 +14,13 @@ export default function App() {
       <StatusBar style="dark" />
       <Busca/>
       <Home />
-    </View>
-      {/* <Busca /> */}
-      {/* <Instituicao /> */}
-      <Routers />
-      {/* <Login /> */}
-    </React.Fragment>
+      </React.Fragment>
   );
 }
+    // </View>
+      {/* <Busca /> */}
+      {/* <Instituicao /> */}
+      // <Routers />
+      {/* <Login /> */}
+    
+
