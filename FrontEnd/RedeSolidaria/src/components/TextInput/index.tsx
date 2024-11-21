@@ -5,10 +5,10 @@ import Icon from '@expo/vector-icons/Feather';
 import { useState } from "react";
 
 interface PropsInput {
-  placeHolder: string;
-  typeInput: boolean;
-  valueInput: string;
-  hadleFunctionInput: (value: string) => void;
+  placeHolder?: string;
+  typeInput?: boolean;
+  valueInput?: string;
+  hadleFunctionInput?: (value: string) => void;
   typeIcon?: string;
 }
 
