@@ -27,6 +27,15 @@ public class InstituicaoService {
 		return instituicao;
 	}
 
+	public InstituicaoDTO buscarPorId(Long id) {
+		Optional<Instituicao> instituicaoOpt = instituicaoRepository.findById(id);
+		if (instituicaoOpt.isPresent()) {
+			return converterParaDTO(instituicaoOpt.get());
+		}
+		return null;
+	}
+
+
 	public Instituicao buscar(Long id) {
 		Optional<Instituicao> instituicaoOpt = instituicaoRepository.findById(id);
 		if (instituicaoOpt.isPresent()) {
@@ -51,11 +60,11 @@ public class InstituicaoService {
 		}
 
 		Instituicao instituicao = new Instituicao();
-		instituicao.setRazaoSocial(instituicao.getRazaoSocial());
-		instituicao.setEmail(instituicao.getEmail());
-		instituicao.setCnpj(instituicao.getCnpj());
-		instituicao.setEndereco(instituicao.getEndereco());
-
+		instituicao.setRazaoSocial(instituicaoInserirDTO.getRazaoSocial());
+		instituicao.setEmail(instituicaoInserirDTO.getEmail());
+		instituicao.setCnpj(instituicaoInserirDTO.getCnpj());
+		instituicao.setEndereco(instituicaoInserirDTO.getEndereco());
+		instituicao.setTipo(instituicaoInserirDTO.getTipo());
 		instituicao = instituicaoRepository.save(instituicao);
 
 		return instituicao;
