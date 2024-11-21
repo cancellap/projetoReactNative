@@ -27,6 +27,15 @@ public class InstituicaoController {
 		return ResponseEntity.ok(instituicaoService.findAll());
 	}
 
+	@GetMapping("/id/{id}")
+	public ResponseEntity<InstituicaoDTO> buscarPorId(@PathVariable Long id) {
+		InstituicaoDTO instituicaoDTO = instituicaoService.buscarPorId(id);
+		if (instituicaoDTO != null) {
+			return ResponseEntity.ok(instituicaoDTO);
+		}
+		return ResponseEntity.notFound().build();
+	}
+
 	@GetMapping("/{busca}")
 	public List<InstituicaoDTO> getInstituicoesPorNome(@PathVariable String busca) {
 		return instituicaoService.buscaPorNome(busca);
