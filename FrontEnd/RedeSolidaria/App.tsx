@@ -6,6 +6,8 @@ import { Busca } from "./src/screens/Busca";
 import { Home } from "./src/screens/Home/index";
 import { Instituicao } from "./src/screens/Instituicao";
 import { Routers } from "./src/routes";
+import { Cadastro } from "./src/screens/Cadastro";
+
 
 
 
@@ -13,16 +15,15 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar style="dark" />
-      <Busca/>
-      <Home />
-      </React.Fragment>
+      
+      {/* <Busca /> */}
+      {/* <Instituicao /> */}
+     {/*   <Cadastro/> */}
+      <Routers /> 
+    
+    </React.Fragment>
 
   );
 }
-    // </View>
-      {/* <Busca /> */}
-      {/* <Instituicao /> */}
-      // <Routers />
-      {/* <Login /> */}
     
 
