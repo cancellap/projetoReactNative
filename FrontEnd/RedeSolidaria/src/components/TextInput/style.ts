@@ -3,14 +3,13 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   boxInput: {
     backgroundColor: '#B4D4FF',
-    width: '90%',
+    width: '100%',
     margin: 5,
-    justifyContent: 'center'
   },
 
   input: {
     margin: 5,
-    width: "70%",
+    width: "100%",
     height: 55,
     borderRadius: 5,
     paddingLeft: 20,

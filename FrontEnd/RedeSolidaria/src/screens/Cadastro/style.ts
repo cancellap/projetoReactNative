@@ -5,10 +5,11 @@ export const style = StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'center',
+        backgroundColor: '#EEF5FF'
     },
     logo:{
-        width:100,
-        height:100,
+        width: 300,
+        height: 200,
         borderRadius:20,
     },
     boxTop:{
