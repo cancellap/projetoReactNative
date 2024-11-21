@@ -27,10 +27,10 @@ public class InstituicaoService {
 		return instituicao;
 	}
 
-	public InstituicaoDTO buscarPorId(Long id) {
+	public Optional<Instituicao> buscarPorId(Long id) {
 		Optional<Instituicao> instituicaoOpt = instituicaoRepository.findById(id);
 		if (instituicaoOpt.isPresent()) {
-			return converterParaDTO(instituicaoOpt.get());
+			return instituicaoOpt;
 		}
 		return null;
 	}
