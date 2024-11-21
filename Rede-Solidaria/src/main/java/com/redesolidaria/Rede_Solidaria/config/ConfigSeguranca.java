@@ -39,7 +39,7 @@ public class ConfigSeguranca {
 //								.requestMatchers(HttpMethod.POST, "/usuarios/**").permitAll()
 //								.requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
 //								.requestMatchers(HttpMethod.POST, "/login").permitAll()
-//								.requestMatchers(HttpMethod.GET, "/instituicao/**").authenticated()
+								.requestMatchers(HttpMethod.GET, "/instituicao/**").authenticated()
 //								.requestMatchers("/h2-console/**").permitAll()
 								.requestMatchers("/usuarios/user").authenticated()
                                 .anyRequest().permitAll()

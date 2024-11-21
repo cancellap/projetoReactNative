@@ -5,6 +5,7 @@ import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../hook/useAuth";
 
 interface ApiResponse {
   id: string;
@@ -13,13 +14,18 @@ interface ApiResponse {
 }
 
 export const Busca = () => {
+  const { token } = useAuth();
   const [response, setResponse] = useState<ApiResponse[]>([]);
   const [value, setValue] = useState("");
 
   const getData = async (value: string) => {
     try {
       const url = `http://192.168.1.2:8080/instituicao/${value}`;
-      const result = await axios.get(url);
+      const result = await axios.get(url, {
+        headers: {
+          Authorization: token,
+        },
+      });
       setResponse(result.data);
     } catch (error) {
       console.log("Erro ao buscar dados");

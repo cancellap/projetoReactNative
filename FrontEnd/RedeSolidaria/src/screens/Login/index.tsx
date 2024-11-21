@@ -16,7 +16,7 @@ import axios from "axios";
 import { useAuth } from "../../hook/useAuth";
 
 export const Login = () => {
-  const { token, setToken } = useAuth();
+  const { token, setToken, saveData } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
@@ -28,16 +28,19 @@ export const Login = () => {
         email: email,
         senha: password,
       })
-      .then((response) => {
+      .then(async (response) => {
         console.log("Funcionou!");
-        setToken(response.headers["authorization"]);
-        console.log(token);
+        const authToken = response.headers["authorization"]; // Obtenha o token diretamente da resposta
+        console.log("Token recebido:", authToken);
+
+        setToken(authToken); // Atualiza o estado do token
+        await saveData(authToken); // Salva o token diretamente no AsyncStorage
+
+        navigation.navigate("StackHome");
       })
       .catch(() => {
         console.log("Erro ao fazer login");
       });
-    // console.log("Pegando informações", email, password);
-    // navigation.navigate("StackHome");
   };
 
   const handlePassword = (value: string) => {

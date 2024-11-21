@@ -4,11 +4,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Busca } from "../screens/Busca";
 import { styles } from "./style";
 import { FontAwesome, Foundation } from "@expo/vector-icons";
-import Home from "../screens/Home";
+import { Home } from "../screens/Home";
+import { useAuth } from "../hook/useAuth";
+import { Cadastro } from "../screens/Cadastro";
 
 const Tab = createBottomTabNavigator();
 
 const TabRouters = () => {
+  const { role } = useAuth();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -47,6 +50,33 @@ const TabRouters = () => {
           ),
         }}
       />
+      {role == "ADMIN" && (
+        <Tab.Screen
+          name="TabCadastro"
+          component={Cadastro}
+          options={{
+            tabBarIcon: ({ focused, size }) => (
+              <View style={styles.boxTabBar}>
+                <FontAwesome
+                  name="plus"
+                  size={focused ? 28 : size}
+                  color={focused ? "#EEF5FF" : "#B4D4FF"}
+                />
+                <Text
+                  style={[
+                    styles.textTabRoute,
+                    {
+                      color: focused ? "#EEF5FF" : "#B4D4FF",
+                    },
+                  ]}
+                >
+                  Cadastro
+                </Text>
+              </View>
+            ),
+          }}
+        />
+      )}
       <Tab.Screen
         name="TabSearch"
         component={Busca}
@@ -55,7 +85,7 @@ const TabRouters = () => {
             <View style={styles.boxTabBar}>
               <FontAwesome
                 name="search"
-                size={focused ? 30 : size}
+                size={focused ? 28 : size}
                 color={focused ? "#EEF5FF" : "#B4D4FF"}
               />
               <Text
