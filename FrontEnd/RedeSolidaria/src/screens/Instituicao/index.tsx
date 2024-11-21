@@ -15,9 +15,11 @@ interface ApiResponse {
   email: string;
 }
 
-type BuscaProps = NativeStackScreenProps<PropsStack, "StackInstituicao">;
+// type BuscaProps = NativeStackScreenProps<PropsStack, "StackInstituicao">;
+type InstituicaoProps = NativeStackScreenProps<PropsStack, "StackInstituicao">;
 
-export const Instituicao = ({ route }: any) => {
+// export const Instituicao = ({ route }: any) => {
+  export const Instituicao: React.FC<InstituicaoProps> = ({ route }) => {
   const idInstituicao = route.params.id;
   console.log(idInstituicao);
   const [response, setResponse] = useState<ApiResponse>();
@@ -29,13 +31,13 @@ export const Instituicao = ({ route }: any) => {
     }
   }, [idInstituicao]);
 
-  const url = `http://192.168.1.12:8080/instituicao/${idInstituicao}`;
+  const url = `http://192.168.1.12:8080/instituicao/id/${idInstituicao}`;
 
   const getDataById = async (id: number) => {
     try {
       setLoading(true);
       const result = await axios.get(
-        `http://192.168.1.12:8080/instituicao/${id}`
+        `http://192.168.1.12:8080/instituicao/id/${id}`
       );
       setResponse(result.data);
     } catch (error) {
@@ -67,17 +69,19 @@ export const Instituicao = ({ route }: any) => {
     // </SafeAreaView>
     
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    {response ? (
-      <CardInstituicao
-        razaoSocial={response.razaoSocial}
-        endereco={response.endereco}
-        cnpj={response.cnpj}
-        email={response.email}
-      />
-    ) : (
-      <Text style={{ color: "pink", fontSize: 30 }}>nao veio</Text>
-    )}
-  </View>
+      {loading ? (
+        <Text>Carregando...</Text>
+      ) : response ? (
+        <CardInstituicao
+          razaoSocial={response.razaoSocial}
+          endereco={response.endereco}
+          cnpj={response.cnpj}
+          email={response.email}
+        />
+      ) : (
+        <Text style={{ color: "pink", fontSize: 30 }}>Instituição não encontrada</Text>
+      )}
+    </View>
 );
 };
 
