@@ -3,51 +3,27 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f8f8',
-    padding: 16,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#1e90ff',
-  },
-  headerText: {
-    fontSize: 20,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  profileIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-  },
-  content: {
-    marginTop: 16,
+    backgroundColor: 'rgb(238, 245, 255)',
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: 20,
   },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+  subtitle:{
+    fontSize: 18,
+    marginBottom: 20,
   },
-  item: {
-    width: '30%',
+  Button: {
+    borderRadius: 20,
+    shadowOpacity: 0,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 16,
-  },
-  itemIcon: {
-    width: 50,
-    height: 50,
-    marginBottom: 8,
-  },
-  itemText: {
-    textAlign: 'center',
-    fontSize: 14,
-  },
+    fontSize: 16,
+    width: 300,
+    height: 70,
+    backgroundColor: 'rgb(134, 182, 246)',
+  }
 });

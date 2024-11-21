@@ -13,10 +13,8 @@ export default function App() {
       {/* <Instituicao /> */}
      {/*   <Cadastro/> */}
       <Routers /> 
-    
     </React.Fragment>
 
   );
 }
-    
 
