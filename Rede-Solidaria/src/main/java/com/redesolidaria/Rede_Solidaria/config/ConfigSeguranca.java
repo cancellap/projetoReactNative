@@ -26,64 +26,62 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class ConfigSeguranca {
 
-    @Autowired
-    UserDetailsService userDetailsService;
+	@Autowired
+	UserDetailsService userDetailsService;
 
-    @Autowired
-    JwtUtil jwtUtil;
+	@Autowired
+	JwtUtil jwtUtil;
 
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-                .cors((cors) -> cors.configurationSource(corsConfigurationSource()))
-                .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(HttpMethod.POST, "/usuarios/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                                .requestMatchers("/h2-console/**").permitAll()
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf(csrf -> csrf.disable()).cors((cors) -> cors.configurationSource(corsConfigurationSource()))
+				.authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/usuarios/**")
+						.permitAll().requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
+						.requestMatchers(HttpMethod.POST, "/login").permitAll()
+						.requestMatchers(HttpMethod.GET, "/instituicao/**").permitAll()
+						.requestMatchers("/h2-console/**").permitAll()
 //                                .anyRequest().authenticated()
-                )
-                .headers(headers -> headers
-                        .frameOptions().disable()
-                )
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+				).headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(
-                authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil);
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(
+				authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil);
+		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
-        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter(
-                authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil,
-                userDetailsService);
+		JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter(
+				authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil,
+				userDetailsService);
 
-        http.addFilter(jwtAuthenticationFilter);
-        http.addFilter(jwtAuthorizationFilter);
+		http.addFilter(jwtAuthenticationFilter);
+		http.addFilter(jwtAuthorizationFilter);
 
-        return http.build();
-    }
+		return http.build();
+	}
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT"));
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowedOrigins(
+				Arrays.asList("http://localhost:5173", "http://192.168.0.100:5173"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+		corsConfiguration
+				.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept"));
+		corsConfiguration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfiguration);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration.applyPermitDefaultValues());
+		return source;
+	}
 
-        return source;
-    }
+	@Bean
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
 
-    @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
-    BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 }

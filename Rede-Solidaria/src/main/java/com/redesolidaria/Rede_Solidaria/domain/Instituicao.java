@@ -3,6 +3,7 @@ package com.redesolidaria.Rede_Solidaria.domain;
 import java.util.Objects;
 
 import com.redesolidaria.Rede_Solidaria.enums.EnumRole;
+import com.redesolidaria.Rede_Solidaria.enums.EnumTipoInstituicao;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -21,9 +22,16 @@ public class Instituicao {
 	private String endereco;
 	private String cnpj;
 	private String email;
-
 	@Enumerated(EnumType.STRING)
-	private EnumRole role;
+	private EnumTipoInstituicao tipo;
+
+	public EnumTipoInstituicao getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(EnumTipoInstituicao tipo) {
+		this.tipo = tipo;
+	}
 
 	public String getEmail() {
 		return email;
@@ -63,14 +71,6 @@ public class Instituicao {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-
-	public EnumRole getRole() {
-		return role;
-	}
-
-	public void setRole(EnumRole role) {
-		this.role = role;
 	}
 
 	@Override

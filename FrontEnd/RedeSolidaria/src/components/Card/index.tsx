@@ -3,14 +3,14 @@ import React from "react";
 import { styles } from "./style";
 
 type CardProps = {
-  nome: string;
+  razaoSocial: string;
   tipo: string;
 };
 
-export const Card = ({ nome, tipo }: CardProps) => {
+export const Card = ({ razaoSocial, tipo }: CardProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.nome}>{nome}</Text>
+      <Text style={styles.nome}>{razaoSocial}</Text>
       <Text style={styles.tipo}>{tipo}</Text>
     </View>
   );

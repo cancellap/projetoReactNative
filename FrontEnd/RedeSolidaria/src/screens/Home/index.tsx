@@ -1,8 +1,6 @@
-// src/components/Home/index.tsx
-
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { styles } from '../Home/style';//-
+import { styles } from './style';
 
 const Home: React.FC = () => {
   const handlePress = () => {
@@ -11,10 +9,10 @@ const Home: React.FC = () => {
 
   return (
     <View style={styles.container}>
+
       <Text style={styles.title}>Bem-vindo à Página Inicial!</Text>
       <Button title="Clique aqui" onPress={handlePress} />
+
     </View>
   );
 };
-
-export default Home;
