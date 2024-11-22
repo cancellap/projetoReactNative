@@ -16,7 +16,7 @@ import axios from "axios";
 import { useAuth } from "../../hook/useAuth";
 
 export const Login = () => {
-  const { token, setToken, saveData } = useAuth();
+  const { token, setToken, saveData, checkToken } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
@@ -31,18 +31,17 @@ export const Login = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://192.168.0.108:8080/login", {
+      const response = await axios.post("http://192.168.1.2:8080/login", {
         email,
         senha: password,
       });
 
-      console.log("Funcionou!");
       const authToken = response.headers["authorization"];
       console.log("Token recebido:", authToken);
 
       setToken(authToken);
       await saveData(authToken);
-
+      await checkToken(authToken);
       navigation.navigate("Home");
     } catch (error) {
       Alert.alert("Erro", "Algo deu errado. Tente novamente.");

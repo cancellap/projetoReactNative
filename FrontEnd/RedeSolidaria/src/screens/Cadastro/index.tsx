@@ -1,10 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import {
-  Image,
-  Text,
-  View
-} from "react-native";
+import { Image, Text, View } from "react-native";
 import logo from "../../assets/logo.png";
 import { ButtonTypes } from "../../components/ButtonTypes";
 import { TextInputField } from "../../components/TextInput";
@@ -30,7 +26,10 @@ export const Cadastro = () => {
     };
 
     try {
-      const response = await axios.post("http://192.168.0.108:8080/usuarios", data);
+      const response = await axios.post(
+        "http://192.168.1.2:8080/usuarios",
+        data
+      );
       console.log("Usuário cadastrado com sucesso:");
       alert("Cadastro realizado com sucesso!");
     } catch (error) {

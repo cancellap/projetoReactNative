@@ -6,6 +6,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 type PropsContext = {
   role: string;
   setRole: (value: string) => void;
+  nome: string;
+  setNome: (value: string) => void;
   checkToken: (email: string) => void;
   isLoading: boolean;
   token: string;
@@ -16,6 +18,8 @@ type PropsContext = {
 const AuthContext = createContext<PropsContext>({
   role: "",
   setRole: () => {},
+  nome: "",
+  setNome: () => {},
   checkToken: () => {},
   isLoading: false,
   token: "",
@@ -26,7 +30,7 @@ const AuthContext = createContext<PropsContext>({
 export const AuthProvider = ({ children }: any) => {
   const navigation = useNavigation();
   const [token, setToken] = useState<string>("");
-
+  const [nome, setNome] = useState<string>("");
   const [role, setRole] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -77,8 +81,9 @@ export const AuthProvider = ({ children }: any) => {
         }
       );
       setRole(response.data.role);
+      setNome(response.data.nome);
       console.log("Token válido");
-      navigation.navigate("StackHome");
+      navigation.navigate("Home");
     } catch (error) {
       console.log("Erro ao validar o token:", error);
     } finally {
@@ -100,6 +105,8 @@ export const AuthProvider = ({ children }: any) => {
         token,
         setToken,
         saveData,
+        nome,
+        setNome,
       }}
     >
       {children}
