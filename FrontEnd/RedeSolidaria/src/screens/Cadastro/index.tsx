@@ -1,14 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import {
-  Image,
-  Text,
-  View
-} from "react-native";
+import { Image, Text, View } from "react-native";
 import logo from "../../assets/logo.png";
-import { ButtonModal } from "../../components/ButtonModal";
 import { ButtonTypes } from "../../components/ButtonTypes";
-import { ModalCadastro } from "../../components/Modal/modalCadastro";
 import { TextInputField } from "../../components/TextInput";
 import { style } from "./style";
 
@@ -32,7 +26,10 @@ export const Cadastro = () => {
     };
 
     try {
-      const response = await axios.post("http://192.168.0.108:8080/usuarios", data);
+      const response = await axios.post(
+        "http://192.168.1.2:8080/usuarios",
+        data
+      );
       console.log("Usuário cadastrado com sucesso:");
       alert("Cadastro realizado com sucesso!");
     } catch (error) {
@@ -99,16 +96,6 @@ export const Cadastro = () => {
           handleFunction={handleSignUp}
           propsBackgroundColor="#176B87"
         />
-      </View>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ButtonModal
-          title="Cadastro"
-          handleFunction={openModal}
-        />
-
-        {isModalVisible && (
-          <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
-        )}
       </View>
     </View>
   );
