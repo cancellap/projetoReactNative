@@ -7,7 +7,6 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
-  Button,
 } from "react-native";
 import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
@@ -21,28 +20,36 @@ export const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleLogin = () => {
-    Alert.alert("Botão para realizar login");
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Erro", "Por favor, preencha todos os campos :)");
+      return;
+    }
 
-    axios
-      .post("http://192.168.1.2:8080/login", {
-        email: email,
+    setLoading(true);
+
+    try {
+      const response = await axios.post("http://192.168.0.108:8080/login", {
+        email,
         senha: password,
-      })
-      .then(async (response) => {
-        console.log("Funcionou!");
-        const authToken = response.headers["authorization"];
-        console.log("Token recebido:", authToken);
-
-        setToken(authToken);
-        await saveData(authToken);
-
-        navigation.navigate("StackHome");
-      })
-      .catch(() => {
-        console.log("Erro ao fazer login");
       });
+
+      console.log("Funcionou!");
+      const authToken = response.headers["authorization"];
+      console.log("Token recebido:", authToken);
+
+      setToken(authToken);
+      await saveData(authToken);
+
+      navigation.navigate("StackHome");
+    } catch (error) {
+      Alert.alert("Erro", "Algo deu errado. Tente novamente.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handlePassword = (value: string) => {
@@ -84,7 +91,7 @@ export const Login = () => {
 
         <TouchableOpacity
           style={styles.ButtonCadastro}
-          onPress={() => navigation.navigate("Cadastro")}
+          onPress={() => navigation.navigate("StackCadastro")}
         >
           <Text style={styles.TextCadastro}>Cadastre-se</Text>
         </TouchableOpacity>

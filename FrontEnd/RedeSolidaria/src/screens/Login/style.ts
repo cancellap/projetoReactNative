@@ -71,7 +71,6 @@ export const styles = StyleSheet.create({
   TextCadastro: {
     alignSelf: "center",
     fontSize: 15,
-    fontWeight: "bold",
     margin: 10,
     color: "#fff",
   },

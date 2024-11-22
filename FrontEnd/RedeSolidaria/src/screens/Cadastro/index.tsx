@@ -6,9 +6,7 @@ import {
   View
 } from "react-native";
 import logo from "../../assets/logo.png";
-import { ButtonModal } from "../../components/ButtonModal";
 import { ButtonTypes } from "../../components/ButtonTypes";
-import { ModalCadastro } from "../../components/Modal/modalCadastro";
 import { TextInputField } from "../../components/TextInput";
 import { style } from "./style";
 
@@ -99,16 +97,6 @@ export const Cadastro = () => {
           handleFunction={handleSignUp}
           propsBackgroundColor="#176B87"
         />
-      </View>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ButtonModal
-          title="Cadastro"
-          handleFunction={openModal}
-        />
-
-        {isModalVisible && (
-          <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
-        )}
       </View>
     </View>
   );

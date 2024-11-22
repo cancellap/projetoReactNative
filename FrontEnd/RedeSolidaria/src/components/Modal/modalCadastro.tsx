@@ -11,9 +11,10 @@ export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; c
   const [email, setEmail] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [endereco, setEndereco] = useState('');
+  const [tipo, setTipo] = useState('');
 
   const handleSignUp = async () => {
-      const data = { username, email, cnpj, endereco };
+      const data = { username, email, cnpj, endereco, tipo };
 
       try {
           const response = await axios.post('http://192.168.0.108:8080/instituicao', data);
@@ -59,6 +60,12 @@ export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; c
                       hadleFunctionInput={setEndereco}
                       typeIcon="location"
                   />
+                  <TextInputField
+                      placeHolder="Digite o tipo de instituição"
+                      valueInput={tipo}
+                      hadleFunctionInput={setTipo}
+                      typeIcon="location"
+                  />
               </View>
               <View style={style.boxBottom}>
                   <ButtonTypes
@@ -66,7 +73,7 @@ export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; c
                       handleFunction={handleSignUp}
                       propsBackgroundColor="#176B87"
                   />
-                  <ButtonTypes title={'Fechar'} propsBackgroundColor="#ff0000" handleFunction={closeModal}/>
+                  <ButtonTypes title={'Fechar'} propsBackgroundColor="#176B87" handleFunction={closeModal}/>
               </View>
           </View>
       </Modal>

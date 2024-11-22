@@ -33,7 +33,7 @@ export const Busca = () => {
       });
 
       setResponse(result.data);
-      setFilteredResponse(result.data); // Inicializa a lista filtrada com todos os dados
+      setFilteredResponse(result.data);
     } catch (error) {
       console.log("Erro ao buscar dados:", error);
     }
