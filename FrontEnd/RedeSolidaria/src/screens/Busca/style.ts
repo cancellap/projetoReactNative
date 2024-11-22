@@ -4,4 +4,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#EEF5FF",
   },
+  modal: {
+    justifyContent: "center",
+    alignItems: "center" ,
+    position: 'absolute',
+    marginTop: 700,
+    marginLeft: 50,
+  }
 });
