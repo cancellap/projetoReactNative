@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Alert,
-  Keyboard,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-  Image,
-} from "react-native";
+import {Alert,Keyboard,Text, TouchableOpacity,TouchableWithoutFeedback,View, Image,} from "react-native";
 import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
 import Logo from "../../../assets/logo.png";
@@ -21,8 +13,8 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleLogin = async () => {
+
     if (!email || !password) {
       Alert.alert("Erro", "Por favor, preencha todos os campos :)");
       return;
@@ -50,6 +42,7 @@ export const Login = () => {
       setLoading(false);
     }
   };
+
 
   const handlePassword = (value: string) => {
     setPassword(value);
