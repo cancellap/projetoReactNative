@@ -8,6 +8,7 @@ import {
   GestureHandlerRootView,
   ScrollView,
 } from "react-native-gesture-handler";
+import { AuthProvider, useAuth } from "../../hook/useAuth";
 
 interface ApiResponse {
   id: string;
@@ -20,13 +21,15 @@ interface ApiResponse {
 
 export const Home: React.FC = () => {
   const [response, setResponse] = useState<ApiResponse[]>([]);
+  const { nome } = useAuth();
+
   const handlePress = () => {
     console.log("Botão pressionado!");
   };
 
   const getHome = async () => {
     try {
-      const url = `http://192.168.0.108:8080/instituicao`;
+      const url = `http://192.168.1.12:8080/instituicao`;
       const result = await axios.get(url);
 
       if (result.data.length > 0) {
@@ -50,8 +53,8 @@ export const Home: React.FC = () => {
     <GestureHandlerRootView style={styles.container}>
       <ScrollView>
         <View style={styles.container}>
-          <HeaderHome />
-          <Text style={styles.title}>Quem Somos</Text>
+          <HeaderHome nome={nome} />
+          <Text style={styles.title}>Quem Somos </Text>
           <Text style={styles.subtitle}>
             O aplicativo Rede Solidária conecta doadores a instituições de
             caridade, públicas e privadas. Facilitamos doações seguras e

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center" ,
     position: 'absolute',
-    marginTop: 700,
-    marginLeft: 50,
+    bottom:20,
+    right: 30,
   }
 });
