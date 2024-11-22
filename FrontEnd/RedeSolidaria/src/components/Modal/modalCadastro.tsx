@@ -35,6 +35,7 @@ export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; c
               <Image source={logo} style={style.logo} />
               <Text style={style.text}>Bem vindo(a) à Rede Solidária</Text>
               <Text style={style.text}>Por favor realize seu cadastro</Text>
+            
               <View style={style.boxMid}>
                   <TextInputField
                       placeHolder="Digite a Razão Social"

@@ -31,13 +31,13 @@ type InstituicaoProps = NativeStackScreenProps<PropsStack, "Instituicao">;
     }
   }, [idInstituicao]);
 
-  const url = `http://192.168.1.12:8080/instituicao/id/${idInstituicao}`;
+  const url = `http://192.168.0.108:8080/instituicao/id/${idInstituicao}`;
 
   const getDataById = async (id: number) => {
     try {
       setLoading(true);
       const result = await axios.get(
-        `http://192.168.1.12:8080/instituicao/id/${id}`
+        `http://192.168.0.108:8080/instituicao/id/${id}`
       );
       setResponse(result.data);
     } catch (error) {

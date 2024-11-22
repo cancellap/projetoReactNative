@@ -22,7 +22,7 @@ export const Home: React.FC = () => {
 
   const getHome = async () => {
     try {
-      const url = `http://192.168.1.12:8080/instituicao`;
+      const url = `http://192.168.0.108:8080/instituicao`;
       const result = await axios.get(url);
 
       if (result.data.length > 0) {

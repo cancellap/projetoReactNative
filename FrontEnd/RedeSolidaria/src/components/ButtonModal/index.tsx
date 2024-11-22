@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity } from "react-native";
 import { styles } from "./style";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 type PropsButton = {
-  title: string | number;
+  title?: string | number;
   propsBackgroundColor?: string;
   handleFunction: () => void;
 }
@@ -19,6 +20,7 @@ export const ButtonModal = ({title, propsBackgroundColor, handleFunction}: Props
         }
       ]}
     >
+      <Icon name="plus" size={20} color="#fff" style={styles.icon} />
       <Text style={styles.text}>
         {title}
       </Text>
