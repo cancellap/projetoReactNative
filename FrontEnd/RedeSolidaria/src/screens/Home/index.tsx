@@ -4,6 +4,10 @@ import { styles } from "./style";
 import { HeaderHome } from "../../components/HeaderHome";
 import { CardInstituicao } from "../../components/CardInstituicao";
 import axios from "axios";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 
 interface ApiResponse {
   id: string;
@@ -43,36 +47,34 @@ export const Home: React.FC = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <HeaderHome />
-      <Text style={styles.title}>Quem Somos</Text>
-      <Text style={styles.subtitle}>
-        O aplicativo Rede Solidária conecta doadores a instituições de caridade,
-        públicas e privadas. Facilitamos doações seguras e transparentes,
-        garantindo que a sua contribuição chegue a quem precisa. Junte-se a nós
-        para transformar vidas e construir um futuro melhor, um gesto solidário
-        de cada vez. 🌟
-      </Text>
+    <GestureHandlerRootView style={styles.container}>
+      <ScrollView>
+        <View style={styles.container}>
+          <HeaderHome />
+          <Text style={styles.title}>Quem Somos</Text>
+          <Text style={styles.subtitle}>
+            O aplicativo Rede Solidária conecta doadores a instituições de
+            caridade, públicas e privadas. Facilitamos doações seguras e
+            transparentes, garantindo que a sua contribuição chegue a quem
+            precisa. Junte-se a nós para transformar vidas e construir um futuro
+            melhor, um gesto solidário de cada vez. 🌟
+          </Text>
 
-      {response.length > 0 ? (
-        response.map((instituicao) => (
-          <CardInstituicao
-            key={instituicao.id}
-            cnpj={instituicao.cnpj}
-            razaoSocial={instituicao.razaoSocial}
-            endereco={instituicao.endereco}
-            email={instituicao.email}
-          />
-        ))
-      ) : (
-        <Text>Carregando instituições...</Text>
-      )}
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.Button} onPress={handlePress}>
-          <Text style={styles.texto}>Doe agora! ❤️</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+          {response.length > 0 ? (
+            response.map((instituicao) => (
+              <CardInstituicao
+                key={instituicao.id}
+                cnpj={instituicao.cnpj}
+                razaoSocial={instituicao.razaoSocial}
+                endereco={instituicao.endereco}
+                email={instituicao.email}
+              />
+            ))
+          ) : (
+            <Text>Carregando instituições...</Text>
+          )}
+        </View>
+      </ScrollView>
+    </GestureHandlerRootView>
   );
 };
