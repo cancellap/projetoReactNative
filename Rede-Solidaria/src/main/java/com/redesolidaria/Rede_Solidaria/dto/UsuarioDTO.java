@@ -1,11 +1,13 @@
 package com.redesolidaria.Rede_Solidaria.dto;
 
 import com.redesolidaria.Rede_Solidaria.domain.Usuario;
+import com.redesolidaria.Rede_Solidaria.enums.EnumRole;
 
 public class UsuarioDTO {
 	private Long id;
 	private String nome;
 	private String email;
+	private EnumRole role;
 
 	public UsuarioDTO() {
 	}
@@ -14,6 +16,7 @@ public class UsuarioDTO {
 		this.id = usuario.getId();
 		this.nome = usuario.getNome();
 		this.email = usuario.getEmail();
+		this.role = usuario.getRole();
 	}
 
 	public Long getId() {
@@ -40,4 +43,11 @@ public class UsuarioDTO {
 		this.email = email;
 	}
 
+	public EnumRole getRole() {
+		return role;
+	}
+
+	public void setRole(EnumRole role) {
+		this.role = role;
+	}
 }

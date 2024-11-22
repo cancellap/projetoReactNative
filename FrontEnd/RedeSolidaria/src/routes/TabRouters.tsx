@@ -48,6 +48,7 @@ const TabRouters = () => {
           ),
         }}
       />
+
       <Tab.Screen
         name="TabSearch"
         component={Busca}
@@ -56,7 +57,7 @@ const TabRouters = () => {
             <View style={styles.boxTabBar}>
               <FontAwesome
                 name="search"
-                size={focused ? 30 : size}
+                size={focused ? 28 : size}
                 color={focused ? "#EEF5FF" : "#B4D4FF"}
               />
               <Text

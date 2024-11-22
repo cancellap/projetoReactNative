@@ -35,14 +35,16 @@ public class ConfigSeguranca {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).cors((cors) -> cors.configurationSource(corsConfigurationSource()))
+
 				.authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/usuarios/**")
 						.permitAll().requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
 						.requestMatchers(HttpMethod.POST, "/login").permitAll()
 						.requestMatchers(HttpMethod.GET, "/instituicao/**").permitAll()
 						.requestMatchers(HttpMethod.POST,  "instituicao").permitAll()
 						.requestMatchers("/h2-console/**").permitAll()
-                                .anyRequest().permitAll()
-				).headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
+
+						.anyRequest().permitAll())
+				.headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(
