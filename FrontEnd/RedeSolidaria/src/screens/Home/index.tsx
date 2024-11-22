@@ -81,3 +81,4 @@ export const Home: React.FC = () => {
     </GestureHandlerRootView>
   );
 };
+

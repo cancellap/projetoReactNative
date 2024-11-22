@@ -5,6 +5,7 @@ import logo from "../../assets/logo.png";
 import { ButtonTypes } from "../ButtonTypes";
 import { TextInputField } from "../TextInput";
 import { style } from "./style";
+import { Icon } from "react-native-elements";
 
 export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; closeModal: () => void }) => {
   const [username, setUsername] = useState('');
@@ -35,36 +36,37 @@ export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; c
               <Image source={logo} style={style.logo} />
               <Text style={style.text}>Bem vindo(a) à Rede Solidária</Text>
               <Text style={style.text}>Por favor realize seu cadastro</Text>
+            
               <View style={style.boxMid}>
                   <TextInputField
-                      placeHolder="Digite a Razão Social"
+                      placeHolder="Razão Social"
                       valueInput={username}
                       hadleFunctionInput={setUsername}
                       typeIcon="person"
                   />
                   <TextInputField
-                      placeHolder="Digite seu email"
+                      placeHolder="Email"
                       valueInput={email}
                       hadleFunctionInput={setEmail}
                       typeIcon="mail"
                   />
                   <TextInputField
-                      placeHolder="Digite seu CNPJ"
+                      placeHolder="CNPJ"
                       valueInput={cnpj}
                       hadleFunctionInput={setCnpj}
-                      typeIcon="business"
+                      typeIcon="briefcase"
                   />
                   <TextInputField
-                      placeHolder="Digite seu endereço"
+                      placeHolder="Endereço"
                       valueInput={endereco}
                       hadleFunctionInput={setEndereco}
-                      typeIcon="location"
+                      typeIcon="map"
                   />
                   <TextInputField
-                      placeHolder="Digite o tipo de instituição"
+                      placeHolder="Tipo de instituição"
                       valueInput={tipo}
                       hadleFunctionInput={setTipo}
-                      typeIcon="location"
+                      typeIcon="business"
                   />
               </View>
               <View style={style.boxBottom}>

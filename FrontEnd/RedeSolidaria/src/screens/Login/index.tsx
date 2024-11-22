@@ -21,7 +21,6 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleLogin = async () => {
     if (!email || !password) {
       Alert.alert("Erro", "Por favor, preencha todos os campos :)");
