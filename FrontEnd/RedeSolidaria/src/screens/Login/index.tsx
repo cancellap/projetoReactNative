@@ -12,6 +12,7 @@ import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
 import Logo from "../../../assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,21 +30,13 @@ export const Login = () => {
   setLoading(true);
 
   try {
-    const response = await fetch("http://192.168.1.2:8080/usuarios", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+    const response = await axios.post("http://192.168.0.108:8080/login", {
+      email, senha : password
+    }).then(()=>{
+      navigation.navigate("Home")
     });
 
-    const data = await response.json();
-
-    if (response.ok) {
-      Alert.alert("Sucesso", "Login realizado com sucesso!");
-      navigation.navigate("Home");
-    } else {
-
-      Alert.alert("Erro", data.message || "Credenciais inválidas.");
-    }
+    const data = response;
 
   } catch (error) {
     Alert.alert("Erro", "Algo deu errado. Tente novamente.");
