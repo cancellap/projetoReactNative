@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
   safeArea: {
     flex: 0,
     backgroundColor: "#176B87",
-    borderRadius: 20,
+    borderEndEndRadius: 20,
+    borderStartEndRadius: 20,
 
   },
   container: {
