@@ -1,8 +1,8 @@
 export type PropsStack = {
-  StackInstituicao: { nome: string; id: number };
-  StackLogin: undefined;
-  StackHome: undefined;
-  StackCadastro: undefined;
+  Instituicao: { nome: string; id: number };
+  Login: undefined;
+  Home: undefined;
+  Cadastro: undefined;
 };
 
 export type PropsTabs = {

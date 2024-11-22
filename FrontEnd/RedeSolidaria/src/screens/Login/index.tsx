@@ -43,7 +43,7 @@ export const Login = () => {
       setToken(authToken);
       await saveData(authToken);
 
-      navigation.navigate("StackHome");
+      navigation.navigate("Home");
     } catch (error) {
       Alert.alert("Erro", "Algo deu errado. Tente novamente.");
       console.error(error);
@@ -91,7 +91,7 @@ export const Login = () => {
 
         <TouchableOpacity
           style={styles.ButtonCadastro}
-          onPress={() => navigation.navigate("StackCadastro")}
+          onPress={() => navigation.navigate("Cadastro")}
         >
           <Text style={styles.TextCadastro}>Cadastre-se</Text>
         </TouchableOpacity>
