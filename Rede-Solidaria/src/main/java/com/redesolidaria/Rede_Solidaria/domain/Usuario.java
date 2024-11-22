@@ -9,12 +9,7 @@ import java.util.Objects;
 
 import com.redesolidaria.Rede_Solidaria.enums.EnumRole;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,9 +21,16 @@ public class Usuario implements Serializable, UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usuario_id")
 	private Long id;
+
+	@Column(name = "nome_usuario", nullable = false)
 	private String nome;
+
+	@Column(name = "email_usuario", nullable = false)
 	private String email;
+
+	@Column(name = "senha_usuario", nullable = false)
 	private String senha;
 	
 	@Enumerated(EnumType.STRING)

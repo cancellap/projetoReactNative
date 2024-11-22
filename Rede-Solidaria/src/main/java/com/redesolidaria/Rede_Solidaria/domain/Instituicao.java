@@ -5,24 +5,30 @@ import java.util.Objects;
 import com.redesolidaria.Rede_Solidaria.enums.EnumRole;
 import com.redesolidaria.Rede_Solidaria.enums.EnumTipoInstituicao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Instituicao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "instituicao_id")
 	private Long id;
+
+	@Column(name = "razao_social")
 	private String razaoSocial;
+
+	@Column
 	private String endereco;
+
+	@Column
 	private String cnpj;
+
+	@Column(name = "email_instituicao")
 	private String email;
+
 	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_instituicao")
 	private EnumTipoInstituicao tipo;
 
 	public EnumTipoInstituicao getTipo() {

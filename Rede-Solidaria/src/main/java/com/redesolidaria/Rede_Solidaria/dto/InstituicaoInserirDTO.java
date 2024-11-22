@@ -1,13 +1,22 @@
 package com.redesolidaria.Rede_Solidaria.dto;
 
 import com.redesolidaria.Rede_Solidaria.enums.EnumTipoInstituicao;
+import jakarta.persistence.Column;
 
 public class InstituicaoInserirDTO {
-
+	@Column(name = "razao_social")
 	private String razaoSocial;
+
+	@Column
 	private String endereco;
+
+	@Column
 	private String cnpj;
+
+	@Column(name = "email_instituicao")
 	private String email;
+
+	@Column(name = "tipo_instituicao")
 	private EnumTipoInstituicao tipo;
 	
 	public EnumTipoInstituicao getTipo() {
