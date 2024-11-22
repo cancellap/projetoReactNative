@@ -5,7 +5,7 @@ import { Routers } from "./src/routes";
 export default function App() {
   return (
     <React.Fragment>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <Routers />
     </React.Fragment>
   );
