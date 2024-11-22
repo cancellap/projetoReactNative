@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: any) => {
       setIsLoading(true);
       // Faz a requisição para verificar o token
       const response = await axios.get(
-        "http://192.168.1.2:8080/usuarios/user",
+        "http://192.168.1.12:8080/usuarios/user",
         {
           headers: {
             Authorization: token,
@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    getData(); // Carrega as informações ao iniciar o app
+    getData();
   }, []);
 
   return (

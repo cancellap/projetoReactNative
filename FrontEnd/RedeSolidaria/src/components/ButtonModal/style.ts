@@ -3,11 +3,12 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   styleButton: {
-    width: 300,
+    width: 60,
     height: Platform.OS === 'android' ? 60 : 100,
-    borderRadius: 40,
+    borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
+    elevation: 5
   },
 
   text: {
