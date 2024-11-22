@@ -4,6 +4,9 @@ import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
+
+import { useAuth } from "../../hook/useAuth";
+
 import { styles } from "./style";
 
 interface ApiResponse {
@@ -13,6 +16,7 @@ interface ApiResponse {
 }
 
 export const Busca = () => {
+  const { token } = useAuth();
   const [response, setResponse] = useState<ApiResponse[]>([]);
   const [filteredResponse, setFilteredResponse] = useState<ApiResponse[]>([]);
   const [value, setValue] = useState("");
@@ -22,9 +26,14 @@ export const Busca = () => {
   const getHome = async () => {
     try {
       const url = `http://192.168.1.12:8080/instituicao`;
-      const result = await axios.get(url);
+      const result = await axios.get(url, {
+        headers: {
+          Authorization: token,
+        },
+      });
+
       setResponse(result.data);
-      setFilteredResponse(result.data); // Inicializa a lista filtrada com todos os dados
+      setFilteredResponse(result.data);
     } catch (error) {
       console.log("Erro ao buscar dados:", error);
     }
