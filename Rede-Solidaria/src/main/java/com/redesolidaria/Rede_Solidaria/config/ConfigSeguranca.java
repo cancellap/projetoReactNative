@@ -41,7 +41,7 @@ public class ConfigSeguranca {
 						.requestMatchers(HttpMethod.POST, "/login").permitAll()
 						.requestMatchers(HttpMethod.GET, "/instituicao/**").permitAll()
 						.requestMatchers(HttpMethod.POST,  "instituicao").permitAll()
-						.requestMatchers("/h2-console/**").permitAll()
+//						.requestMatchers("/h2-console/**").permitAll()
 
 						.anyRequest().permitAll())
 				.headers(headers -> headers.frameOptions().disable()).httpBasic(Customizer.withDefaults())
@@ -65,7 +65,8 @@ public class ConfigSeguranca {
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowedOrigins(
-				Arrays.asList("http://localhost:5173", "http://192.168.0.100:5173"));
+				Arrays.asList("http://localhost:5173", "http://192.168.0.100:5173", "http://localhost:3000",
+						"http://localhost:5432", "http://192.168.1.65:5432"));
 		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		corsConfiguration
 				.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept"));

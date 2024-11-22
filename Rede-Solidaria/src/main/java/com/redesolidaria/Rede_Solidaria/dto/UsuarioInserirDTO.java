@@ -1,10 +1,18 @@
 package com.redesolidaria.Rede_Solidaria.dto;
 
+import jakarta.persistence.Column;
+
 public class UsuarioInserirDTO {
 
+	@Column(name = "nome_usuario", nullable = false)
 	private String nome;
+
+	@Column(name = "nome_usuario", nullable = false)
 	private String email;
+
+	@Column(name = "senha_usuario", nullable = false)
 	private String senha;
+
 	private String confirmaSenha;
 
 	public String getNome() {
