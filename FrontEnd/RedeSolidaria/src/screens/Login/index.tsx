@@ -84,7 +84,7 @@ export const Login = () => {
 
         <TouchableOpacity
           style={styles.ButtonCadastro}
-          onPress={() => navigation.navigate("TabCadastro")}
+          onPress={() => navigation.navigate("Cadastro")}
         >
           <Text style={styles.TextCadastro}>Cadastre-se</Text>
         </TouchableOpacity>
