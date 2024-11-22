@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   boxInput: {
     backgroundColor: '#B4D4FF',
-    width: '100%',
+    width: '90%',
     margin: 5,
   },
 
