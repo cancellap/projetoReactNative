@@ -1,60 +1,53 @@
 import React, { useState } from "react";
-import {
-  Alert,
-  Keyboard,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-  Image,
-} from "react-native";
+import {Alert,Keyboard,Text, TouchableOpacity,TouchableWithoutFeedback,View, Image,} from "react-native";
 import { TextInputField } from "../../components/TextInput";
 import { styles } from "./style";
 import Logo from "../../../assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
-
+import axios from "axios";
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleLogin = async () => {
+  
 
   if (!email || !password) {
     Alert.alert("Erro", "Por favor, preencha todos os campos :)");
     return;
   }
-
   setLoading(true);
 
   try {
-    const response = await fetch("http://192.168.1.2:8080/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await axios.post
+    ("http://192.168.1.2:8080/login", {
+      email, senha : password,
+      setTimeout: 20000
 
-    const data = await response.json();
-    console.log("Rsp da API", data)
-
-    if (response.ok) {
-      Alert.alert("Sucesso", "Login realizado com sucesso!");
+    })
+    
+   
+    if (response.status === 200) {
       navigation.navigate("Home");
     } else {
-
-      Alert.alert("Erro", data.message || "Credenciais inválidas.");
+      Alert.alert("Erro", "Credenciais inválidas!");
     }
 
   } catch (error) {
-    Alert.alert("Erro", "Algo deu errado. Tente novamente.");
-    console.error(error);
-  } 
-   finally {
-      setLoading(false); 
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        Alert.alert("Erro", error.response.data.message || "Credenciais inválidas!");
+      } else if (error.request) {
+        Alert.alert("Erro", "Não foi possível conectar ao servidor. Tente novamente mais tarde.");
+      }
+    } else {
+      Alert.alert("Erro", "Algo deu errado:/ Tente novamente.");
     }
+  } finally {
+    setLoading(false);
+  }
 };
-////////////////////////////////////////////////
 
   const handlePassword = (value: string) => {
     setPassword(value);
