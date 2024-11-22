@@ -5,49 +5,44 @@ import { styles } from "./style";
 import Logo from "../../../assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { useAuth } from "../../hook/useAuth";
+
 export const Login = () => {
+  const { token, setToken, saveData, checkToken } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
   const handleLogin = async () => {
-  
 
-  if (!email || !password) {
-    Alert.alert("Erro", "Por favor, preencha todos os campos :)");
-    return;
-  }
-  setLoading(true);
+    if (!email || !password) {
+      Alert.alert("Erro", "Por favor, preencha todos os campos :)");
+      return;
+    }
 
-  try {
-    const response = await axios.post
-    ("http://192.168.1.2:8080/login", {
-      email, senha : password,
-      setTimeout: 20000
+    setLoading(true);
 
-    })
-    
-   
-    if (response.status === 200) {
+    try {
+      const response = await axios.post("http://192.168.0.108:8080/login", {
+        email,
+        senha: password,
+      });
+
+      const authToken = response.headers["authorization"];
+      console.log("Token recebido:", authToken);
+
+      setToken(authToken);
+      await saveData(authToken);
+      await checkToken(authToken);
       navigation.navigate("Home");
-    } else {
-      Alert.alert("Erro", "Credenciais inválidas!");
+    } catch (error) {
+      Alert.alert("Erro", "Algo deu errado. Tente novamente.");
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
+  };
 
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        Alert.alert("Erro", error.response.data.message || "Credenciais inválidas!");
-      } else if (error.request) {
-        Alert.alert("Erro", "Não foi possível conectar ao servidor. Tente novamente mais tarde.");
-      }
-    } else {
-      Alert.alert("Erro", "Algo deu errado:/ Tente novamente.");
-    }
-  } finally {
-    setLoading(false);
-  }
-};
 
   const handlePassword = (value: string) => {
     setPassword(value);
@@ -69,7 +64,6 @@ export const Login = () => {
             valueInput={email}
             hadleFunctionInput={handleEmail}
             typeIcon="person"
-        
           />
 
           <TextInputField
@@ -86,13 +80,13 @@ export const Login = () => {
         </View>
 
         <Text style={styles.msg}>Ainda não possui uma conta? </Text>
-      
+
         <TouchableOpacity
-        style={styles.ButtonCadastro}
-        onPress={() => navigation.navigate('Cadastro')}
-      >
-        <Text style={styles.TextCadastro}>Cadastre-se</Text>
-      </TouchableOpacity>
+          style={styles.ButtonCadastro}
+          onPress={() => navigation.navigate("Cadastro")}
+        >
+          <Text style={styles.TextCadastro}>Cadastre-se</Text>
+        </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
   );

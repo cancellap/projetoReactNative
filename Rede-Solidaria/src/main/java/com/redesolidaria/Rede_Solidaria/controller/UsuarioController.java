@@ -20,30 +20,35 @@ import com.redesolidaria.Rede_Solidaria.service.UsuarioService;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
-	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
 
-	@Autowired
-	private UsuarioService usuarioService;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-	@GetMapping
-	public ResponseEntity<List<UsuarioDTO>> listar() {
-		return ResponseEntity.ok(usuarioService.findAll());
-	}
+    @Autowired
+    private UsuarioService usuarioService;
 
-	@PostMapping
-	public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioInserirDTO usuario) {
-		return ResponseEntity.ok(usuarioService.inserir(usuario));
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> excluir(@PathVariable Long id) {
-		if (usuarioRepository.existsById(id)) {
-			usuarioRepository.deleteById(id);
-			return ResponseEntity.noContent().build();
-		}
-		return ResponseEntity.notFound().build();
+    @GetMapping
+    public ResponseEntity<List<UsuarioDTO>> listar() {
+        return ResponseEntity.ok(usuarioService.findAll());
     }
-	
+
+    @GetMapping("/user")
+    public ResponseEntity<UsuarioDTO> getUser() {
+        return ResponseEntity.ok(usuarioService.getUser());
+    }
+
+    @PostMapping
+    public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioInserirDTO usuario) {
+        return ResponseEntity.ok(usuarioService.inserir(usuario));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+        if (usuarioRepository.existsById(id)) {
+            usuarioRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }

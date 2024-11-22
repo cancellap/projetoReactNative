@@ -7,15 +7,9 @@ export const style = StyleSheet.create({
         justifyContent:'center',
     },
     logo:{
-        width:100,
-        height:100,
+        width:250,
+        height:250,
         borderRadius:20,
-    },
-    boxTop:{
-        height:200,
-        width:'100%',
-        alignItems:'center',
-        justifyContent:'center',
     },
     boxMid:{
         height:340,
@@ -24,7 +18,7 @@ export const style = StyleSheet.create({
     },
     boxBottom:{
         flexDirection:'row',
-        height:100,
+        height:200,
         width:'100%',
         alignItems:'center',
         justifyContent:'space-evenly',
