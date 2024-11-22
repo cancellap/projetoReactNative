@@ -4,10 +4,13 @@ import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
+import { ModalCadastro } from "../../components/Modal/modalCadastro";
+import { Icon } from "react-native-vector-icons/Icon";
 
 import { useAuth } from "../../hook/useAuth";
 
 import { styles } from "./style";
+import { ButtonModal } from "../../components/ButtonModal";
 
 interface ApiResponse {
   id: string;
@@ -54,6 +57,11 @@ export const Busca = () => {
     });
   };
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const openModal = () => setIsModalVisible(true);
+  const closeModal = () => setIsModalVisible(false);
+
   useEffect(() => {
     getHome();
   }, []);
@@ -81,6 +89,17 @@ export const Busca = () => {
           </Text>
         </View>
       )}
+      <View style={styles.modal}>
+        <ButtonModal
+          handleFunction={openModal}
+          propsBackgroundColor="#176B87"
+          
+        />
+
+        {isModalVisible && (
+          <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
+        )}
+      </View>
     </View>
   );
 };

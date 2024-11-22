@@ -21,7 +21,6 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleLogin = async () => {
     if (!email || !password) {
       Alert.alert("Erro", "Por favor, preencha todos os campos :)");
@@ -32,6 +31,7 @@ export const Login = () => {
 
     try {
       const response = await axios.post("http://192.168.1.65:8080/login", {
+
         email,
         senha: password,
       });

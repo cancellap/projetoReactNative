@@ -28,6 +28,7 @@ export const Cadastro = () => {
     try {
       const response = await axios.post(
         "http://192.168.1.65:8080/usuarios",
+
         data
       );
       console.log("Usuário cadastrado com sucesso:");

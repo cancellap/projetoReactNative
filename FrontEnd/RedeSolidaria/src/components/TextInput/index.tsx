@@ -2,6 +2,7 @@ import { Keyboard, TextInput, TouchableOpacity, TouchableWithoutFeedback } from 
 import { styles } from "./style";
 import { View } from "react-native";
 import Icon from "@expo/vector-icons/Feather";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
 
 interface PropsInput {
@@ -35,6 +36,10 @@ export const TextInputField = ({
 
         <View style={styles.boxIcon}>
           {typeIcon === "person" && <Icon name="user" size={24} color="#000" />}
+          {typeIcon === "mail" && <Icon name="mail" size={24} color="#000" />}
+          {typeIcon === "briefcase" && <Icon name="briefcase" size={24} color="#000" />}
+          {typeIcon === "map" && <Icon name="map" size={24} color="#000" />}
+          {typeIcon === "business" && <MaterialIcons name="business" size={24} color="#000" />}
 
           {typeIcon === "password" && (
             <TouchableOpacity onPress={() => setViewPassword(!viewPassword)}>
