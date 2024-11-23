@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom:20,
     right: 30,
-  }
+  },
+
 });

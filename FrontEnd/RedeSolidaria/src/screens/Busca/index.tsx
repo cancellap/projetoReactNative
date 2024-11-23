@@ -5,9 +5,7 @@ import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 import { ModalCadastro } from "../../components/Modal/modalCadastro";
-
 import { useAuth } from "../../hook/useAuth";
-
 import { styles } from "./style";
 import { ButtonModal } from "../../components/ButtonModal";
 
@@ -39,6 +37,19 @@ export const Busca = () => {
     } catch (error) {
       console.log("Erro ao buscar dados:", error);
     }
+    console.log("get Home");
+  };
+
+  const deleteInstituicao = async (id: string) => {
+    try {
+      axios.delete(`http://192.168.1.12:8080/instituicao/${id}`);
+    } catch (error) {
+      console.log("erro ao deletar");
+    }finally{
+      navigate.navigate("TabSearch")
+      getHome()
+    }
+    console.log("get Home");
   };
 
   const handleSearch = (text: string) => {
@@ -63,7 +74,8 @@ export const Busca = () => {
 
   useEffect(() => {
     getHome();
-  }, []);
+    console.log("get Home");
+  }, [isModalVisible]);
 
   return (
     <View style={styles.container}>
@@ -77,7 +89,11 @@ export const Busca = () => {
               onPress={() => goToInstituicao(parseInt(item.id))}
               activeOpacity={0.89}
             >
-              <Card razaoSocial={item.razaoSocial} tipo={item.tipo} />
+              <Card
+                razaoSocial={item.razaoSocial}
+                tipo={item.tipo}
+                onPress={() => deleteInstituicao(item.id)}
+              />
             </TouchableOpacity>
           )}
         />
@@ -95,7 +111,7 @@ export const Busca = () => {
             propsBackgroundColor="#176B87"
           />
           {isModalVisible && (
-            <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
+            <ModalCadastro isVisible={isModalVisible} closeModal={closeModal}  />
           )}
         </View>
       )}
