@@ -5,7 +5,6 @@ import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 import { ModalCadastro } from "../../components/Modal/modalCadastro";
-import { Icon } from "react-native-vector-icons/Icon";
 
 import { useAuth } from "../../hook/useAuth";
 
@@ -19,7 +18,7 @@ interface ApiResponse {
 }
 
 export const Busca = () => {
-  const { token } = useAuth();
+  const { token, role } = useAuth();
   const [response, setResponse] = useState<ApiResponse[]>([]);
   const [filteredResponse, setFilteredResponse] = useState<ApiResponse[]>([]);
   const [value, setValue] = useState("");
@@ -89,17 +88,17 @@ export const Busca = () => {
           </Text>
         </View>
       )}
-      <View style={styles.modal}>
-        <ButtonModal
-          handleFunction={openModal}
-          propsBackgroundColor="#176B87"
-          
-        />
-
-        {isModalVisible && (
-          <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
-        )}
-      </View>
+      {role === "ADMIN" && (
+        <View style={styles.modal}>
+          <ButtonModal
+            handleFunction={openModal}
+            propsBackgroundColor="#176B87"
+          />
+          {isModalVisible && (
+            <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
+          )}
+        </View>
+      )}
     </View>
   );
 };
