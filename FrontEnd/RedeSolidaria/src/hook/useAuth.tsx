@@ -27,12 +27,20 @@ const AuthContext = createContext<PropsContext>({
   saveData: () => {},
 });
 
+interface ApiResponse {
+  id: string;
+  razaoSocial: string;
+  tipo: string;
+}
+
 export const AuthProvider = ({ children }: any) => {
   const navigation = useNavigation();
   const [token, setToken] = useState<string>("");
   const [nome, setNome] = useState<string>("");
   const [role, setRole] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<ApiResponse[]>([]);
+
 
   const saveData = async (token: string) => {
     try {

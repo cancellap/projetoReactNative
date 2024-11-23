@@ -1,4 +1,11 @@
-import { Keyboard, TextInput, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { styles } from "./style";
 import { View } from "react-native";
 import Icon from "@expo/vector-icons/Feather";
@@ -23,35 +30,46 @@ export const TextInputField = ({
   const [viewPassword, setViewPassword] = useState<boolean>(false);
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.boxInput}>
-        <TextInput
-          onChangeText={hadleFunctionInput}
-          style={styles.input}
-          placeholder={placeHolder}
-          placeholderTextColor="#000"
-          secureTextEntry={typeIcon === "password" && !viewPassword}
-          value={valueInput}
-        />
+    <KeyboardAvoidingView
+      style={styles.boxInput}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View >
+          <TextInput
+            onChangeText={hadleFunctionInput}
+            style={styles.input}
+            placeholder={placeHolder}
+            placeholderTextColor="#000"
+            secureTextEntry={typeIcon === "password" && !viewPassword}
+            value={valueInput}
+          />
 
-        <View style={styles.boxIcon}>
-          {typeIcon === "person" && <Icon name="user" size={24} color="#000" />}
-          {typeIcon === "mail" && <Icon name="mail" size={24} color="#000" />}
-          {typeIcon === "briefcase" && <Icon name="briefcase" size={24} color="#000" />}
-          {typeIcon === "map" && <Icon name="map" size={24} color="#000" />}
-          {typeIcon === "business" && <MaterialIcons name="business" size={24} color="#000" />}
+          <View style={styles.boxIcon}>
+            {typeIcon === "person" && (
+              <Icon name="user" size={24} color="#000" />
+            )}
+            {typeIcon === "mail" && <Icon name="mail" size={24} color="#000" />}
+            {typeIcon === "briefcase" && (
+              <Icon name="briefcase" size={24} color="#000" />
+            )}
+            {typeIcon === "map" && <Icon name="map" size={24} color="#000" />}
+            {typeIcon === "business" && (
+              <MaterialIcons name="business" size={24} color="#000" />
+            )}
 
-          {typeIcon === "password" && (
-            <TouchableOpacity onPress={() => setViewPassword(!viewPassword)}>
-              {viewPassword ? (
-                <Icon name="eye" size={24} color="#000" />
-              ) : (
-                <Icon name="eye-off" size={24} color="#000" />
-              )}
-            </TouchableOpacity>
-          )}
+            {typeIcon === "password" && (
+              <TouchableOpacity onPress={() => setViewPassword(!viewPassword)}>
+                {viewPassword ? (
+                  <Icon name="eye" size={24} color="#000" />
+                ) : (
+                  <Icon name="eye-off" size={24} color="#000" />
+                )}
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
