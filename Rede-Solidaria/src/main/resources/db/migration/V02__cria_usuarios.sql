@@ -1,3 +1,4 @@
+
 INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, role)
 VALUES ('João Silva', 'joao.silva@example.com', '$2a$12$8DHh2zRHl4JneYwRFLWT9e1MAPNpTeU7unQ6ixqNsvtXJI2dYs3dG',
         'VISITANTE'),
@@ -20,3 +21,4 @@ VALUES ('João Silva', 'joao.silva@example.com', '$2a$12$8DHh2zRHl4JneYwRFLWT9e1
        ('Juliana Martins', 'juliana.martins@example.com',
         '$2a$12$8DHh2zRHl4JneYwRFLWT9e1MAPNpTeU7unQ6ixqNsvtXJI2dYs3dG', 'VISITANTE'),
        ('Teste', 'teste@teste.com', '$2a$12$bAts0Hp2Dq4IGL4Bg7XCbud4gTac35OQ9G.OGyqefW3nxhyhWnZMK', 'ADMIN');
+
