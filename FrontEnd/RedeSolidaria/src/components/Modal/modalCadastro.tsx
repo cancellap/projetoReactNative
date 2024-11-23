@@ -15,10 +15,10 @@ export const ModalCadastro = ({ isVisible, closeModal }: { isVisible: boolean; c
   const [tipo, setTipo] = useState('');
 
   const handleSignUp = async () => {
-      const data = { username, email, cnpj, endereco, tipo };
+      const data = { razaoSocial: username, email, cnpj, endereco, tipo };
 
       try {
-          const response = await axios.post('http://192.168.0.108:8080/instituicao', data);
+          const response = await axios.post('http://192.168.1.65:8080/instituicao', data);
           alert("Cadastro realizado com sucesso!");
           closeModal();
       } catch (error) {
