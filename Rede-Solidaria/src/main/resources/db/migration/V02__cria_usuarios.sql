@@ -8,4 +8,6 @@ VALUES ('João Silva', 'joao.silva@example.com', 'senha123'),
        ('Roberto Lima', 'roberto.lima@example.com', 'senha404'),
        ('Fernanda Alves', 'fernanda.alves@example.com', 'senha505'),
        ('Ricardo Rocha', 'ricardo.rocha@example.com', 'senha606'),
-       ('Juliana Martins', 'juliana.martins@example.com', 'senha707');
+       ('Juliana Martins', 'juliana.martins@example.com', 'senha707'),
+       ('Pedro Cancella', 'pedro@gmail.com', '$2a$12$bAts0Hp2Dq4IGL4Bg7XCbud4gTac35OQ9G.OGyqefW3nxhyhWnZMK')
+   ;
