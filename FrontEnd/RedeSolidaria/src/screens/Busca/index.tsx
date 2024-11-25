@@ -42,14 +42,18 @@ export const Busca = () => {
 
   const deleteInstituicao = async (id: string) => {
     try {
-      axios.delete(`http://192.168.1.65:8080/instituicao/${id}`);
+
+      await axios.delete(`http://192.168.1.12:8080/instituicao/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log("Instituição deletada");
+      getHome();
+
     } catch (error) {
-      console.log("erro ao deletar");
-    }finally{
-      navigate.navigate("TabSearch")
-      getHome()
+      console.log("Erro ao deletar:", error);
     }
-    console.log("get Home");
   };
 
   const handleSearch = (text: string) => {
@@ -73,8 +77,9 @@ export const Busca = () => {
   const closeModal = () => setIsModalVisible(false);
 
   useEffect(() => {
-    getHome();
-    console.log("get Home");
+    if (!isModalVisible) {
+      getHome();
+    }
   }, [isModalVisible]);
 
   return (
@@ -111,7 +116,7 @@ export const Busca = () => {
             propsBackgroundColor="#176B87"
           />
           {isModalVisible && (
-            <ModalCadastro isVisible={isModalVisible} closeModal={closeModal}  />
+            <ModalCadastro isVisible={isModalVisible} closeModal={closeModal} />
           )}
         </View>
       )}
