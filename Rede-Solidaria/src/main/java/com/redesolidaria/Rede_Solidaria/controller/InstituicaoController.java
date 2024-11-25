@@ -47,6 +47,15 @@ public class InstituicaoController {
 		return ResponseEntity.ok(instituicaoService.inserir(instituicao));
 	}
 
+	@PutMapping("/id/{id}")
+	public ResponseEntity<Instituicao> alterar(@PathVariable Long id, @RequestBody InstituicaoInserirDTO instituicaoInserirDTO) {
+		if (!instituicaoRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		Instituicao instituicao = instituicaoService.alterar(instituicaoInserirDTO, id);
+		return ResponseEntity.ok(instituicao);
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		if (instituicaoRepository.existsById(id)) {
@@ -55,5 +64,7 @@ public class InstituicaoController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+
+
 
 }
