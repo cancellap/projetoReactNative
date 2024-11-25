@@ -81,6 +81,14 @@ export const Busca = () => {
     }
   }, [isModalVisible]);
 
+  useFocusEffect(
+    useCallback(() => {
+      getHome();
+    }, []) // Vazio porque a função não depende de nenhum estado externo
+  );
+
+  useEffect(() => {}, []);
+
   return (
     <View style={styles.container}>
       <SearchBar onSearch={handleSearch} value={value} />
@@ -90,7 +98,9 @@ export const Busca = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => goToInstituicao(parseInt(item.id))}
+              onPress={() => {
+                goToInstituicao(parseInt(item.id));
+              }}
               activeOpacity={0.89}
             >
               <Card
