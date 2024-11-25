@@ -1,8 +1,10 @@
 package com.redesolidaria.Rede_Solidaria.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.redesolidaria.Rede_Solidaria.enums.EnumTipoInstituicao;
 import jakarta.persistence.Column;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InstituicaoInserirDTO {
 	@Column(name = "razao_social")
 	private String razaoSocial;

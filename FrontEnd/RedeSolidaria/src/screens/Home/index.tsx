@@ -29,8 +29,7 @@ export const Home: React.FC = () => {
 
   const getHome = async () => {
     try {
-
-      const url = `http://192.168.1.65:8080/instituicao`;
+      const url = `http://192.168.1.12:8080/instituicao`;
 
       const result = await axios.get(url);
 
@@ -68,6 +67,7 @@ export const Home: React.FC = () => {
           {response.length > 0 ? (
             response.map((instituicao) => (
               <CardInstituicao
+                tipo={instituicao.tipo}
                 key={instituicao.id}
                 cnpj={instituicao.cnpj}
                 razaoSocial={instituicao.razaoSocial}
@@ -83,4 +83,3 @@ export const Home: React.FC = () => {
     </GestureHandlerRootView>
   );
 };
-
