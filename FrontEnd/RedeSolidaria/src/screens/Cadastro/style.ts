@@ -30,6 +30,7 @@ export const style = StyleSheet.create({
         width:'100%',
         alignItems:'center',
         justifyContent:'space-evenly',
+        marginTop:20
     },
     text:{
         marginLeft:5,
