@@ -3,6 +3,7 @@ import { Login } from "../screens/Login";
 import TabRouters from "./TabRouters";
 import { Instituicao } from "../screens/Instituicao";
 import { Cadastro } from "../screens/Cadastro";
+import { Busca } from "../screens/Busca";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const StackRouters = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
       <Stack.Screen name="Home" component={TabRouters} />
+      <Stack.Screen name="Busca" component={Busca} />
     </Stack.Navigator>
   );
 };
