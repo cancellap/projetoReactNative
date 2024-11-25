@@ -1,32 +1,57 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#f5f5f5',
-  //   padding: 16,
-  // },
-  // loadingContainer: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // cardContainer: {
-  //   backgroundColor: '#ffffff',
-  //   borderRadius: 8,
-  //   padding: 16,
-  //   marginVertical: 8,
-  //   shadowColor: '#000',
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowOpacity: 0.1,
-  //   shadowRadius: 4,
-  //   elevation: 2,
-  // },
-  // cardText: {
-  //   fontSize: 16,
-  //   color: '#333',
-  //   marginBottom: 4,   },
-  // searchBarContainer: {
-  //   marginBottom: 16,
-  // },
+  containerHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    marginTop: 50, 
+  },
+  arrowButton: {
+    padding: 10, 
+  },
+  editButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#176B87',
+    borderRadius: 5,
+  },
+  editButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  formContainer: {
+    marginTop: 20,
+    width: '80%',
+  },
+  input: {
+    height: 40,
+    borderColor: '#CCCCCC',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  saveButton: {
+    marginTop: 15,
+    padding: 12,
+    backgroundColor: '#28a745', 
+    borderRadius: 5,
+  },
+  saveButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    marginTop: 10,
+    padding: 12,
+    backgroundColor: '#dc3545', 
+    borderRadius: 5,
+  },
+  cancelButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });

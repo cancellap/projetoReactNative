@@ -25,7 +25,7 @@ export const Busca = () => {
 
   const getHome = async () => {
     try {
-      const url = `http://192.168.1.12:8080/instituicao`;
+      const url = `http://192.168.1.65:8080/instituicao`;
       const result = await axios.get(url, {
         headers: {
           Authorization: token,
@@ -42,7 +42,7 @@ export const Busca = () => {
 
   const deleteInstituicao = async (id: string) => {
     try {
-      axios.delete(`http://192.168.1.12:8080/instituicao/${id}`);
+      axios.delete(`http://192.168.1.65:8080/instituicao/${id}`);
     } catch (error) {
       console.log("erro ao deletar");
     }finally{
