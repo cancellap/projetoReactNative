@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import axios from "axios";
 import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ModalCadastro } from "../../components/Modal/modalCadastro";
 import { useAuth } from "../../hook/useAuth";
 import { styles } from "./style";
@@ -25,7 +25,8 @@ export const Busca = () => {
 
   const getHome = async () => {
     try {
-      const url = `http://192.168.1.65:8080/instituicao`;
+      const url = `http://192.168.1.12:8080/instituicao`;
+
       const result = await axios.get(url, {
         headers: {
           Authorization: token,
@@ -42,7 +43,6 @@ export const Busca = () => {
 
   const deleteInstituicao = async (id: string) => {
     try {
-
       await axios.delete(`http://192.168.1.12:8080/instituicao/${id}`, {
         headers: {
           Authorization: token,
@@ -50,7 +50,6 @@ export const Busca = () => {
       });
       console.log("Instituição deletada");
       getHome();
-
     } catch (error) {
       console.log("Erro ao deletar:", error);
     }
