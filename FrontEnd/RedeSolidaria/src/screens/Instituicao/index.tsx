@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -14,7 +14,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { PropsStack } from "../../@types/navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../hook/useAuth";
 
 interface ApiResponse {
@@ -45,8 +45,7 @@ export const Instituicao: React.FC<InstituicaoProps> = ({
     email: "",
     tipo: "",
   });
-  const {role } = useAuth();
-
+  const { role } = useAuth();
 
   useEffect(() => {
     if (idInstituicao) {
@@ -85,7 +84,6 @@ export const Instituicao: React.FC<InstituicaoProps> = ({
       alert("Instituição atualizada com sucesso!");
       setEditMode(false);
       getDataById(idInstituicao);
-      navigate.navigate("TabSearch");
     } catch (error) {
       console.log("Erro ao atualizar dados");
     } finally {
@@ -102,7 +100,7 @@ export const Instituicao: React.FC<InstituicaoProps> = ({
       <View style={styles.containerHeader}>
         <TouchableOpacity
           style={styles.arrowButton}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigate.navigate("Busca")}
         >
           <Icon name="arrow-left" size={24} color="#176B87" />
         </TouchableOpacity>

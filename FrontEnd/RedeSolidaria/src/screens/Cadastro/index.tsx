@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import logo from "../../assets/logo.png";
 import { ButtonTypes } from "../../components/ButtonTypes";
 import { TextInputField } from "../../components/TextInput";
 import { style } from "./style";
+import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export const Cadastro = () => {
   const [username, setUsername] = useState("");
@@ -27,9 +29,7 @@ export const Cadastro = () => {
 
     try {
       const response = await axios.post(
-
         "http://192.168.1.12:8080/usuarios",
-
 
         data
       );
@@ -59,6 +59,8 @@ export const Cadastro = () => {
 
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
+
+  const navigate = useNavigation();
 
   return (
     <View style={style.container}>
@@ -94,6 +96,11 @@ export const Cadastro = () => {
         />
       </View>
       <View style={style.boxBottom}>
+        <ButtonTypes
+          title="Voltar"
+          handleFunction={() => navigate.navigate("Login")}
+          propsBackgroundColor="#c23c14"
+        />
         <ButtonTypes
           title="Cadastrar"
           handleFunction={handleSignUp}
