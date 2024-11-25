@@ -27,7 +27,7 @@ export const ModalCadastro = ({
     const data = { razaoSocial: username, email, cnpj, endereco, tipo };
     try {
       const response = await axios.post(
-        "http://192.168.1.12:8080/instituicao",
+        "http://192.168.1.65:8080/instituicao",
         data
       );
       alert("Cadastro realizado com sucesso!");
@@ -72,15 +72,7 @@ export const ModalCadastro = ({
             hadleFunctionInput={setEndereco}
             typeIcon="map"
           />
-          {/* <TextInputField
-            placeHolder="tipo"
-            valueInput={tipo}
-            hadleFunctionInput={setTipo}
-            typeIcon="map"
-          /> */}
-
-          {/* <PickerTipo onValueChange={(value) => setTipo(value)} selectValue={tipo} /> */}
-          <View style={style.pickerContainer}>
+           <View style={style.pickerContainer}>
             <Picker
               selectedValue={tipo}
               onValueChange={(value) => setTipo(value)}
@@ -91,9 +83,7 @@ export const ModalCadastro = ({
               <Picker.Item label="PUBLICA" value="PUBLICA" />
               <Picker.Item label="ONGS" value="ONGS" />
             </Picker>
-            {tipo ? (
-              <Text style={style.result}>Você selecionou: {typeof tipo}</Text>
-            ) : null}
+            
           </View>
         </View>
         <View style={style.boxBottom}>

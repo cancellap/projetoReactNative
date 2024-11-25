@@ -53,13 +53,13 @@ export const Instituicao: React.FC<InstituicaoProps> = ({
     }
   }, [idInstituicao]);
 
-  const url = `http://192.168.1.12:8080/instituicao/id/${idInstituicao}`;
+  const url = `http://192.168.1.65:8080/instituicao/id/${idInstituicao}`;
 
   const getDataById = async (id: number) => {
     try {
       setLoading(true);
       const result = await axios.get(
-        `http://192.168.1.12:8080/instituicao/id/${id}`
+        `http://192.168.1.65:8080/instituicao/id/${id}`
       );
       setResponse(result.data);
       setFormData(result.data);
@@ -77,7 +77,7 @@ export const Instituicao: React.FC<InstituicaoProps> = ({
       setLoading(true);
       console.log("Enviando dados:", formData);
       await axios.put(
-        `http://192.168.1.12:8080/instituicao/id/${idInstituicao}`,
+        `http://192.168.1.65:8080/instituicao/id/${idInstituicao}`,
         formData
       );
       console.log(idInstituicao);
