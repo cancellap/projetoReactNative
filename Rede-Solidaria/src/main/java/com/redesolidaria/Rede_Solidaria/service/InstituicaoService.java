@@ -72,7 +72,6 @@ public class InstituicaoService {
 	}
 
 	public Instituicao alterar (InstituicaoInserirDTO instituicaoInserirDTO, Long id) {
-
 		Instituicao instituicao = new Instituicao();
 		instituicao.setId(id);
 		instituicao.setRazaoSocial(instituicaoInserirDTO.getRazaoSocial());
