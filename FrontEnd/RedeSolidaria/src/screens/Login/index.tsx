@@ -30,7 +30,9 @@ export const Login = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://192.168.0.108:8080/login", {
+
+      const response = await axios.post("http://192.168.1.65:8080/login", {
+
 
         email,
         senha: password,

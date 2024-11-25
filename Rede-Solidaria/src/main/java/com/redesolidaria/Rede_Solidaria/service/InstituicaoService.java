@@ -71,4 +71,17 @@ public class InstituicaoService {
 
 	}
 
+	public Instituicao alterar (InstituicaoInserirDTO instituicaoInserirDTO, Long id) {
+
+		Instituicao instituicao = new Instituicao();
+		instituicao.setId(id);
+		instituicao.setRazaoSocial(instituicaoInserirDTO.getRazaoSocial());
+		instituicao.setEmail(instituicaoInserirDTO.getEmail());
+		instituicao.setCnpj(instituicaoInserirDTO.getCnpj());
+		instituicao.setEndereco(instituicaoInserirDTO.getEndereco());
+		instituicao.setTipo(instituicaoInserirDTO.getTipo());
+		instituicao = instituicaoRepository.save(instituicao);
+		return instituicao;
+	}
+
 }

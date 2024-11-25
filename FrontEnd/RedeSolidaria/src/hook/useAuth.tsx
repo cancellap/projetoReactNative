@@ -27,12 +27,20 @@ const AuthContext = createContext<PropsContext>({
   saveData: () => {},
 });
 
+interface ApiResponse {
+  id: string;
+  razaoSocial: string;
+  tipo: string;
+}
+
 export const AuthProvider = ({ children }: any) => {
   const navigation = useNavigation();
   const [token, setToken] = useState<string>("");
   const [nome, setNome] = useState<string>("");
   const [role, setRole] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<ApiResponse[]>([]);
+
 
   const saveData = async (token: string) => {
     try {
@@ -73,7 +81,9 @@ export const AuthProvider = ({ children }: any) => {
       setIsLoading(true);
       // Faz a requisição para verificar o token
       const response = await axios.get(
-        "http://192.168.0.108:8080/usuarios/user",
+
+        "http://192.168.1.65:8080/usuarios/user",
+
         {
           headers: {
             Authorization: token,

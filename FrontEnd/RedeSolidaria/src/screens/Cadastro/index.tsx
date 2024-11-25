@@ -27,7 +27,9 @@ export const Cadastro = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.0.108:8080/usuarios",
+
+        "http://192.168.1.65:8080/usuarios",
+
 
         data
       );

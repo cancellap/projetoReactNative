@@ -21,4 +21,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: "#777",
   },
+  buttonDelete:{
+    position: "absolute",
+    right:10,
+    top: 9
+  }
 });

@@ -5,9 +5,7 @@ import { Card } from "../../components/Card";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 import { ModalCadastro } from "../../components/Modal/modalCadastro";
-
 import { useAuth } from "../../hook/useAuth";
-
 import { styles } from "./style";
 import { ButtonModal } from "../../components/ButtonModal";
 
@@ -27,7 +25,9 @@ export const Busca = () => {
 
   const getHome = async () => {
     try {
-      const url = `http://192.168.0.108:8080/instituicao`;
+
+      const url = `http://192.168.1.65:8080/instituicao`;
+
       const result = await axios.get(url, {
         headers: {
           Authorization: token,
@@ -38,6 +38,23 @@ export const Busca = () => {
       setFilteredResponse(result.data);
     } catch (error) {
       console.log("Erro ao buscar dados:", error);
+    }
+    console.log("get Home");
+  };
+
+  const deleteInstituicao = async (id: string) => {
+    try {
+
+      await axios.delete(`http://192.168.1.12:8080/instituicao/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log("Instituição deletada");
+      getHome();
+
+    } catch (error) {
+      console.log("Erro ao deletar:", error);
     }
   };
 
@@ -62,8 +79,10 @@ export const Busca = () => {
   const closeModal = () => setIsModalVisible(false);
 
   useEffect(() => {
-    getHome();
-  }, []);
+    if (!isModalVisible) {
+      getHome();
+    }
+  }, [isModalVisible]);
 
   return (
     <View style={styles.container}>
@@ -77,7 +96,11 @@ export const Busca = () => {
               onPress={() => goToInstituicao(parseInt(item.id))}
               activeOpacity={0.89}
             >
-              <Card razaoSocial={item.razaoSocial} tipo={item.tipo} />
+              <Card
+                razaoSocial={item.razaoSocial}
+                tipo={item.tipo}
+                onPress={() => deleteInstituicao(item.id)}
+              />
             </TouchableOpacity>
           )}
         />
