@@ -41,13 +41,17 @@ export const Instituicao: React.FC<InstituicaoProps> = ({ route, navigation }) =
     }
   }, [idInstituicao]);
 
+
   const url = `http://192.168.1.65:8080/instituicao/id/${idInstituicao}`;
+
 
   const getDataById = async (id: number) => {
     try {
       setLoading(true);
       const result = await axios.get(
+
         `http://192.168.1.65:8080/instituicao/id/${id}`
+
       );
       setResponse(result.data);
       setFormData(result.data);

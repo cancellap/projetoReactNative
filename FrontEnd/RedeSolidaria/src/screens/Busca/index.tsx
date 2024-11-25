@@ -25,7 +25,9 @@ export const Busca = () => {
 
   const getHome = async () => {
     try {
+
       const url = `http://192.168.1.65:8080/instituicao`;
+
       const result = await axios.get(url, {
         headers: {
           Authorization: token,
