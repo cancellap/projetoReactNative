@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }: any) => {
       setIsLoading(true);
       const response = await axios.get(
 
-        "http://192.168.1.65:8080/usuarios/user",
+        "http://192.168.1.12:8080/usuarios/user",
 
         {
           headers: {

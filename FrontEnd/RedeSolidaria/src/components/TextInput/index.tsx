@@ -35,7 +35,7 @@ export const TextInputField = ({
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TextInput
             onChangeText={hadleFunctionInput}
             style={styles.input}
@@ -44,30 +44,23 @@ export const TextInputField = ({
             secureTextEntry={typeIcon === "password" && !viewPassword}
             value={valueInput}
           />
-
-          <View style={styles.boxIcon}>
+          <TouchableOpacity
+            style={styles.boxIcon}
+            onPress={() =>
+              typeIcon === "password" && setViewPassword(!viewPassword)
+            }
+          >
+            {typeIcon === "mail" && <Icon name="mail" size={24} color="#000" />}
             {typeIcon === "person" && (
               <Icon name="user" size={24} color="#000" />
             )}
-            {typeIcon === "mail" && <Icon name="mail" size={24} color="#000" />}
-            {typeIcon === "briefcase" && (
-              <Icon name="briefcase" size={24} color="#000" />
-            )}
-            {typeIcon === "map" && <Icon name="map" size={24} color="#000" />}
-            {typeIcon === "business" && (
-              <MaterialIcons name="business" size={24} color="#000" />
-            )}
-
-            {typeIcon === "password" && (
-              <TouchableOpacity onPress={() => setViewPassword(!viewPassword)}>
-                {viewPassword ? (
-                  <Icon name="eye" size={24} color="#000" />
-                ) : (
-                  <Icon name="eye-off" size={24} color="#000" />
-                )}
-              </TouchableOpacity>
-            )}
-          </View>
+            {typeIcon === "password" &&
+              (viewPassword ? (
+                <Icon name="eye" size={24} color="#000" />
+              ) : (
+                <Icon name="eye-off" size={24} color="#000" />
+              ))}
+          </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

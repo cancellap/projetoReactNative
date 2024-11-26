@@ -7,7 +7,6 @@ import { PickerTipo } from "../PIcker";
 import { TextInputField } from "../TextInput";
 import { style } from "./style";
 import { Picker } from "@react-native-picker/picker";
-import { BuscaGet } from "../../services/BuscaGet";
 import { useNavigation } from "@react-navigation/native";
 
 export const ModalCadastro = ({
@@ -27,7 +26,7 @@ export const ModalCadastro = ({
     const data = { razaoSocial: username, email, cnpj, endereco, tipo };
     try {
       const response = await axios.post(
-        "http://192.168.1.65:8080/instituicao",
+        "http://192.168.1.12:8080/instituicao",
         data
       );
       alert("Cadastro realizado com sucesso!");

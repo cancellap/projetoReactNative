@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 10,
     marginBottom: 30,
-    textAlign: 'center',
+    padding: 13,
+    textAlign: 'justify',
   },
 });

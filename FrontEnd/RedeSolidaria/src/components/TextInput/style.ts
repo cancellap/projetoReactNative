@@ -1,30 +1,31 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   boxInput: {
-    backgroundColor: "#B4D4FF",
-    width: "90%",
-    margin: 5,
-    borderRadius: 10,
-    flex: 1
-  },
-
-  input: {
-    margin: 5,
-    width: "100%",
-    height: 55,
-    borderRadius: 5,
-    paddingLeft: 20,
-    fontSize: 20,
-    paddingRight: 45,
-  },
-
-  boxIcon: {
-    position: "absolute",
-    height: "100%",
+    flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    marginBottom: 15,
+    height: 50,
+    width: "90%",
+    alignSelf: "center",
+    paddingHorizontal: 10,
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: "#333",
+    paddingVertical: Platform.OS === "ios" ? 10 : 5,
+  },
+  boxIcon: {
     justifyContent: "center",
-    right: 0,
-    width: 80,
+    alignItems: "center",
+    marginLeft: 10,
+  },
+  iconButton: {
+    padding: 8,
   },
 });

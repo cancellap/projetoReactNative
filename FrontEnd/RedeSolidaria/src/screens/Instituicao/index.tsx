@@ -1,21 +1,18 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
-  FlatList,
-  SafeAreaView,
-  View,
   Text,
   TouchableOpacity,
+  View
 } from "react-native";
-import axios from "axios";
-import { CardInstituicao } from "../../components/CardInstituicao";
-import { SearchBar } from "../../components/SearchBar";
-import { styles } from "./style";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { PropsStack } from "../../@types/navigation";
-import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native-gesture-handler";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { PropsStack } from "../../@types/navigation";
+import { CardInstituicao } from "../../components/CardInstituicao";
 import { useAuth } from "../../hook/useAuth";
+import { styles } from "./style";
 
 interface ApiResponse {
   // id: number;
@@ -59,7 +56,7 @@ export const Instituicao: React.FC<InstituicaoProps> = ({
     try {
       setLoading(true);
       const result = await axios.get(
-        `http://192.168.1.65:8080/instituicao/id/${id}`
+        `http://192.168.1.12:8080/instituicao/id/${id}`
       );
       setResponse(result.data);
       setFormData(result.data);
