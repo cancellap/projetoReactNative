@@ -29,7 +29,7 @@ export const Cadastro = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.65:8080/usuarios",
+        "http://192.168.1.12:8080/usuarios",
 
         data
       );
@@ -67,7 +67,7 @@ export const Cadastro = () => {
       <View style={style.boxTop}>
         <Image source={logo} style={style.logo} />
         <Text style={style.text}>Bem vindo(a) à Rede Solidária</Text>
-        <Text style={style.text}>Por favor realize seu cadastro</Text>
+        <Text style={style.text}>Por favor cadastre a intituição</Text>
       </View>
       <View style={style.boxMid}>
         <TextInputField

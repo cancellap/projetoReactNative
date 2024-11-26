@@ -3,75 +3,65 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#EEF5FF",
+    padding: 20,
+    backgroundColor: "#f5f5f5",
   },
-
-  boxForms: {
-    backgroundColor: "#86B6F6",
-    height: "40%",
-    borderRadius: 15,
-    width: "90%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  ButtonLogin: {
-    marginTop: 10,
-    justifyContent: "center",
-    width: "45%",
-    padding: 4,
-    backgroundColor: "#176B87",
-    borderRadius: 10,
-  },
-
-  text: {
-    alignSelf: "center",
-    justifyContent: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 10,
-    color: "#fff",
-    marginBottom: 10,
-  },
-
-  msg: {
-    alignSelf: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    color: "#d34742",
-    fontSize: 18,
-  },
-
   logo: {
-    marginTop: 10,
-    alignContent: "flex-start",
-    justifyContent: "flex-start",
-    width: 300,
-    height: 200,
+    width: 150,
+    height: 150,
+    resizeMode: "contain",
+    marginBottom: 20,
   },
-
   titulo: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: "bold",
-    color: "#176B87",
-    marginBottom: 50,
+    color: "#333",
+    marginBottom: 20,
+    textAlign: "center",
   },
-
+  boxForms: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+    backgroundColor: "#B4D4FF",
+    padding: 23,
+    borderRadius: 20
+  },
+  ButtonLogin: {
+    marginTop: 20,
+    backgroundColor: "#176B87",
+    paddingVertical: 12,
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "90%",
+  },
+  text: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  msg: {
+    fontSize: 14,
+    color: "red",
+    marginTop: 20,
+    textAlign: "center",
+  },
   ButtonCadastro: {
     marginTop: 10,
-    justifyContent: "center",
-    width: "30%",
-    padding: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     backgroundColor: "#176B87",
-    borderRadius: 10,
+    borderRadius: 8,
+    alignItems: "center",
   },
-
   TextCadastro: {
-    alignSelf: "center",
-    fontSize: 15,
-    margin: 10,
-    color: "#fff",
+    color: "#EEF5FF",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

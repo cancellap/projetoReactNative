@@ -25,7 +25,7 @@ export const Busca = () => {
 
   const getHome = async () => {
     try {
-      const url = `http://192.168.1.65:8080/instituicao`;
+      const url = `http://192.168.1.12:8080/instituicao`;
 
       const result = await axios.get(url, {
         headers: {
@@ -43,7 +43,7 @@ export const Busca = () => {
 
   const deleteInstituicao = async (id: string) => {
     try {
-      await axios.delete(`http://192.168.1.65:8080/instituicao/${id}`, {
+      await axios.delete(`http://192.168.1.12:8080/instituicao/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -84,7 +84,7 @@ export const Busca = () => {
   useFocusEffect(
     useCallback(() => {
       getHome();
-    }, []) // Vazio porque a função não depende de nenhum estado externo
+    }, []) 
   );
 
   useEffect(() => {}, []);
